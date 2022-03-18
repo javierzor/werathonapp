@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   countryData: any;
   nombre: any;
   apellido: any;
-
+  aceptaterminos: boolean = false;
   constructor(
     private router: Router,
     private variosservicios: VariosService,
@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
  async logear(){
 
       var dataoptimaconsultaruser = {
-        nombre_solicitud:'optimaconsultaruser',
+        nombre_solicitud:'werathonappinicio',
         username: this.loginuser,
         password: this.loginpassword
       }
@@ -83,7 +83,7 @@ export class LoginPage implements OnInit {
 
           this.variosservicios.variasfunciones(dataoptimaconsultaruser).subscribe(async( res: any ) =>{
             console.log(' respuesta optimaconsultaruser ',res);
-            if(res!='credencialesincorrectas'){
+            if(res!='credencialesincorrectas'&&res!=null){
               // this.json.isloggedin='si';
               // this.json.username=res.username;
               // this.json.tipo_cuenta=res.tipo_cuenta;
