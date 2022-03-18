@@ -1,0 +1,7 @@
+{
+  "name": "werathonapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
