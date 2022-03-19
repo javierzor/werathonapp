@@ -8,16 +8,31 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
+  iconohambuergesa: boolean = false;
   secretKey = "123456&Descryption";
   verificarloginemail: any;
   tipo_cuenta: any;
+  estadodelmenu: Promise<boolean>;
   constructor(
     private menu: MenuController
   ) 
   
   {
 
+  }
+  
+  ocultarhamburgesa(){
+    this.iconohambuergesa=true;
+
+  }
+
+  mostraramburgesa(){
+    this.iconohambuergesa=false;
+
+  }
+
+  CloseMenuFlechaBoton(){
+    this.menu.close();
   }
 
   funcionverificarlogin(){

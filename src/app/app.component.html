@@ -1,17 +1,27 @@
 
-<ion-app>
+<ion-app >
+  
+  
+  <ion-split-pane  contentId="main-content">
+    
+    
 
-  <ion-split-pane contentId="main-content">
-
-  <ion-menu contentId="main-content">
-    <ion-content>
-
+    <ion-menu (ionDidClose)="mostraramburgesa()" (ionWillOpen)="ocultarhamburgesa()" contentId="main-content">
+      
+      
+      <ion-content>
+        
       <ion-item>
         <ion-icon slot="start" name="moon-outline"></ion-icon>
         <ion-label>
           Opcion1
         </ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-buttons class="hidden-lg-up" hideWhen="portrait">
+          <ion-button (click)="CloseMenuFlechaBoton()">
+            <ion-icon color="primary" name="arrow-back-outline"></ion-icon>
+
+          </ion-button>
+        </ion-buttons>
       </ion-item>
 
 
@@ -132,6 +142,7 @@
   <ion-router-outlet id="main-content"></ion-router-outlet>
 
 </ion-split-pane>
+<ion-menu-button color="primary" *ngIf="!iconohambuergesa"  menuId="main-content"></ion-menu-button>
 
 </ion-app>
 
