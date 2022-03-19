@@ -40,7 +40,7 @@
             </ion-row>
           
             <ion-item>
-            <ion-input [(ngModel)]="loginuser" placeholder="E-mail o usuario"></ion-input>
+            <ion-input (ionChange)="CHANGEusuarioocorreo()"  (input)="CHANGEusuarioocorreo()" [(ngModel)]="loginuser" placeholder="E-mail o usuario"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -48,7 +48,7 @@
             </ion-item>
           
           
-            <ion-button (click)="logear()" expand='block'>Ingresar</ion-button>
+            <ion-button [disabled]="colocouncorreoperonoelpunto||!loginuser||loginuser==''||!loginpassword||loginpassword==''" (click)="logear()" expand='block'>Ingresar</ion-button>
             <ion-button (click)="iraregistrarse()" fill='clear'>¿Eres nuevo? Registrate</ion-button>
 
 
@@ -83,7 +83,8 @@
                    <ion-input [(ngModel)]="registercorreo" placeholder="E-mail"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input [(ngModel)]="usuario" placeholder="Usuario"></ion-input>
+                  <ion-input (ionChange)="CHANGEusuarioderegistro()"  (input)="CHANGEusuarioderegistro()"  [(ngModel)]="usuarioderegistro" placeholder="Usuario"></ion-input>
+                  <ion-text *ngIf="registrandoseconarrobaenelusuario" style="position:absolute; bottom:0px; right:1px; font-size:9px; color:red;">Arroba (@) no permitido.</ion-text>
                 </ion-item>
                 <ion-row>
                   <ion-col size="5.7">
@@ -94,14 +95,15 @@
                   <ion-col size="5.7">
                     <ion-item>
                       <ion-input type="password" [(ngModel)]="registropasswordrepetida" placeholder="Repetir Contraseña"></ion-input>
+                      <ion-text *ngIf="registropassword!=registropasswordrepetida" style="position:absolute; bottom:-1px; font-size:8px; color:red;">Contraseñas no coinciden.</ion-text>
                     </ion-item>
                   </ion-col>
                 </ion-row>
 
                 <ion-item>
-                  <ion-label>Country</ion-label>
-                  <ion-select >
-                    <ion-select-option *ngFor="let c of countryData">{{c.name}}</ion-select-option>
+                  <ion-label>Pais</ion-label>
+                  <ion-select (ionChange)="ONCHANGEPAIS($event)" >
+                    <ion-select-option value="{{i}}" *ngFor="let c of countryData; let i = index;">{{c.name}}</ion-select-option>
                   </ion-select>
                 </ion-item>
 
@@ -124,7 +126,7 @@
                   <ion-list>
                     <ion-item>
                       <ion-label style="padding: 0px;">Términos y condiciones.</ion-label>
-                      <ion-checkbox slot="start" [(ngModel)]="aceptaterminos"></ion-checkbox>
+                      <ion-checkbox (ionChange)="cambioterminos()" slot="start" [(ngModel)]="aceptaterminos"></ion-checkbox>
                     </ion-item>
                   </ion-list>
 
@@ -142,9 +144,36 @@
                 <!-- <ion-text *ngIf="IsCatpchaValid">Captcha resuelto, Puede registrarse...</ion-text>
                 <ion-text *ngIf="!IsCatpchaValid">Esperando la completación del captcha...</ion-text> -->
                 <!-- <ion-button [disabled]="!IsCatpchaValid" (click)="registrarsecorreo()" style="--background: #35CA75;" expand='block'>Registrarse</ion-button> -->
-                <ion-button (click)="registrarsecorreo()" expand='block'>Registrarse</ion-button>
+                <ion-button [disabled]="
+                registrandoseconarrobaenelusuario==true||
+                registropassword!=registropasswordrepetida||
+                aceptaterminos!=true||
+                registercorreo==undefined||
+                registercorreo==null||
+                registercorreo==''||
+                usuarioderegistro==undefined||
+                usuarioderegistro==null||
+                usuarioderegistro==''||
+                registropassword==undefined||
+                registropassword==null||
+                registropassword==''||
+                registropasswordrepetida==undefined||
+                registropasswordrepetida==null||
+                registropasswordrepetida==''||
+                paisdataseleccionado==undefined||
+                paisdataseleccionado==null||
+                paisdataseleccionado==''||
+                nombre==''||
+                nombre==undefined||
+                nombre==null||
+                apellido==''||
+                apellido==undefined||
+                apellido==null
 
-                <h6>Al registrarse, se autogenerara su nombre de usuario. podra cambiarlo en ajustes.</h6>
+
+                " (click)="registrarsecorreo()" expand='block'>Registrarse</ion-button>
+
+                <h6>Al registrarse, usted podra iniciar sección con su correo electronico o su nombre de usuario.</h6>
 
                 <ion-button (click)="iralogin()" fill='clear'>¿Tienes Cuenta? Ingresa Aqui!</ion-button>
             </section>
