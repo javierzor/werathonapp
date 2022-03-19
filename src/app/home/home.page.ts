@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,11 @@ export class HomePage {
   verificarloginemail: any;
   menuderechosuperior:boolean=false;
 
-  constructor() 
+  constructor(
+
+    private router: Router,
+
+  ) 
   {
     this.funcionverificarlogin();
   }
@@ -46,6 +51,11 @@ export class HomePage {
 
   decrypt(textToDecrypt : string){
     return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
 }
