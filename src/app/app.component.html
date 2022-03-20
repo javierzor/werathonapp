@@ -32,38 +32,43 @@
           Menu Principal:
         </ion-list-header>
         
-        <ion-menu-toggle auto-hide="false">
-        <ion-item routerDirection="root" routerLink="/home" lines="none" detail="false" routerLinkActive="selected">
+        <!-- <ion-menu-toggle auto-hide="false"> -->
+        <ion-item routerDirection="root" (click)="toggleMenu()" routerLink="/home" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="home-outline"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Inicio</ion-label>
         </ion-item>
-        <ion-item routerDirection="root" routerLink="/usuario" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" (click)="ONCHANGEusuario()" lines="none" auto-hide="false" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="person"></ion-icon> &nbsp; &nbsp; 
-          <ion-label >Usuario</ion-label>
+          <ion-label *ngIf="!mostrareditarperfil">Usuario</ion-label>
+          <ion-label color="primary" *ngIf="mostrareditarperfil">Usuario</ion-label>
         </ion-item>
-        <ion-item routerDirection="root" routerLink="/miscompras" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item *ngIf="mostrareditarperfil" routerDirection="root" (click)="toggleMenuDeeditarPerfil()" routerLink="perfil" lines="none" detail="false" routerLinkActive="selected">
+              &nbsp; &nbsp; &nbsp; &nbsp;  <ion-icon color="primary" name="create"></ion-icon> &nbsp; &nbsp; 
+              <ion-label >Editar Perfil</ion-label>
+            </ion-item>
+        <ion-item routerDirection="root" (click)="toggleMenu()" routerLink="/miscompras" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="pricetags"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Mis Compras</ion-label>
         </ion-item>
-        <ion-item routerDirection="root" routerLink="/direccionderetiro" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" (click)="toggleMenu()" routerLink="/direccionderetiro" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="wallet"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Dirección de retiro</ion-label>
         </ion-item>
-        <ion-item routerDirection="root" routerLink="/misgananciasdeafiliado" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" (click)="toggleMenu()" routerLink="/misgananciasdeafiliado" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="diamond"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Mis ganancias de afiliado</ion-label>
         </ion-item>
-        <ion-item routerDirection="root" routerLink="/preguntas" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" (click)="toggleMenu()" routerLink="/preguntas" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="help"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Preguntas</ion-label>
         </ion-item>
-        <ion-item routerDirection="root" routerLink="/guia" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" (click)="toggleMenu()" routerLink="/guia" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="hammer"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Guia</ion-label>
         </ion-item>
 
 
-        </ion-menu-toggle>
+        <!-- </ion-menu-toggle> -->
       </ion-list>
 
     </ion-content>

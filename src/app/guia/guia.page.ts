@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as CryptoJS from 'crypto-js';
+import {Router} from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-guia',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuiaPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private menu: MenuController,
 
-  ngOnInit() {
+  ) 
+  {
   }
+
+  ionViewWillEnter(){
+    this.menu.enable(true);
+  }
+
+
+    async ngOnInit() {
+  }
+
 
 }

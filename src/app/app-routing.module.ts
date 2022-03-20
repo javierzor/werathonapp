@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./miscompras/miscompras.module').then( m => m.MiscomprasPageModule)
   },
   {
-    path: 'usuario',
-    loadChildren: () => import('./usuario/usuario.module').then( m => m.UsuarioPageModule)
-  },
-  {
     path: 'direccionderetiro',
     loadChildren: () => import('./direccionderetiro/direccionderetiro.module').then( m => m.DireccionderetiroPageModule)
   },
@@ -42,6 +38,10 @@ const routes: Routes = [
   {
     path: 'guia',
     loadChildren: () => import('./guia/guia.module').then( m => m.GuiaPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
 ];
 

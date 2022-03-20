@@ -54,6 +54,11 @@ export class HomePage {
 
   }
 
+  iramiperfilDelMenuDerechoSuperior(){
+    this.router.navigate(['perfil']);
+    this.menuderechosuperior=false;
+  }
+
   decrypt(textToDecrypt : string){
     return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
   }

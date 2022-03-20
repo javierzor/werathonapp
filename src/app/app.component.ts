@@ -13,6 +13,7 @@ export class AppComponent {
   verificarloginemail: any;
   tipo_cuenta: any;
   estadodelmenu: Promise<boolean>;
+  mostrareditarperfil: boolean = false;
 
   public appPages = [
     // { title: 'Home', url: 'home', icon: 'planet' },
@@ -41,7 +42,9 @@ export class AppComponent {
 
   }
 
-  
+  iralpaneladmin(){
+
+  }
   
   ocultarhamburgesa(){
     this.iconohambuergesa=true;
@@ -50,6 +53,24 @@ export class AppComponent {
   mostraramburgesa(){
     this.iconohambuergesa=false;
 
+  }
+
+  ONCHANGEusuario(){
+    if(this.mostrareditarperfil==true)
+    this.mostrareditarperfil=false
+    else{
+      this.mostrareditarperfil=true;
+    }
+  }
+
+  toggleMenu(){ // this function will toggle your menu. 
+    this.menu.toggle();
+    this.mostrareditarperfil=false;
+  }
+
+    toggleMenuDeeditarPerfil(){ // this function will toggle your menu. 
+    this.menu.toggle();
+    this.mostrareditarperfil=true;
   }
 
   CloseMenuFlechaBoton(){
