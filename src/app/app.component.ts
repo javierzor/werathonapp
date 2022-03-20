@@ -13,6 +13,26 @@ export class AppComponent {
   verificarloginemail: any;
   tipo_cuenta: any;
   estadodelmenu: Promise<boolean>;
+
+  public appPages = [
+    // { title: 'Home', url: 'home', icon: 'planet' },
+    { title: 'Ingreso de Material', url: '/home', icon: 'add' },
+    { title: 'Consulta', url: '/miscompras', icon: 'search' },
+    { title: 'Solicitud de Fraccionamiento', url: 'solicitud-fraccionamiento', icon: 'archive' },
+    { title: 'Bloqueo de Ordenes de fraccionamiento', url: 'bloq-orden-fraccionamiento', icon: 'trash' },
+    { title: 'Bloqueo de ingreso de material', url: 'bloq-ingreso-material', icon: 'stop-circle' },
+    { title: 'Fraccionamiento', url: 'fraccionamiento', icon: 'cut' },
+    { title: 'Auditoria', url: 'auditoria', icon: 'clipboard' },
+    { title: 'Creación de Roles', url: 'crear-roles', icon: 'enter' },
+    { title: 'Creación de usuarios', url: 'crear-usuarios', icon: 'person-add' },
+    { title: 'Creación de referencias', url: 'crear-referencias', icon: 'duplicate' },
+    { title: 'Cambio de carrete a Chipa', url: 'de-carrete-a-otro', icon: 'at-circle' },
+    { title: 'Pantalla de entregas', url: 'https://cables.cameleco.com/pantalla-entregas/', icon: 'checkbox' },
+    { title: 'Entregas', url: 'entregas', icon: 'laptop' },
+    { title: 'Novedades Supervisor', url: 'novedades-supervisor', icon: 'newspaper' },
+  ];
+
+
   constructor(
     private menu: MenuController
   ) 
@@ -20,10 +40,11 @@ export class AppComponent {
   {
 
   }
+
+  
   
   ocultarhamburgesa(){
     this.iconohambuergesa=true;
-
   }
 
   mostraramburgesa(){

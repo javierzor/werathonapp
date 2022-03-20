@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import {Router} from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,16 @@ export class HomePage {
   menuderechosuperior:boolean=false;
 
   constructor(
-
     private router: Router,
+    private menu: MenuController,
 
   ) 
   {
     this.funcionverificarlogin();
+  }
+
+  ionViewWillEnter(){
+    this.menu.enable(true);
   }
 
   funcionverificarlogin(){

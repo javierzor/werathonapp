@@ -19,7 +19,13 @@
   .hidden-xl-down { display: none ; }
   //TERMINAN los invisibilizadores segun el tamaño de pantalla
 
+  ion-item.selected {
+    --color: var(--ion-color-primary);
+  }
+  ion-menu.md ion-item.selected {
+    --background: rgba(var(--ion-color-primary-rgb), 0.14);
+  }
 
-  .my-custom-menu {
-    --width: 500px;
+  ion-menu.md ion-item.selected ion-icon {
+    color: var(--ion-color-primary);
   }

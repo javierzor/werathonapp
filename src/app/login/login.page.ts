@@ -3,6 +3,7 @@ import * as CryptoJS from 'crypto-js';
 import { VariosService } from '../service/varios.service';
 import { PaisesService } from '../service/paises.service';
 import {Router} from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +35,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private variosservicios: VariosService,
     private paises: PaisesService,
+    private menu: MenuController
 
   ) 
   
@@ -53,6 +55,10 @@ export class LoginPage implements OnInit {
     
      this.countryData=this.paises.countryData;    
 
+  }
+
+  ionViewWillEnter(){
+    this.menu.enable(false);
   }
 
     gotohome(){
