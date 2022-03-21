@@ -49,7 +49,8 @@ export class PerfilPage {
   infoperfiltoview: any;
   languages: any;
   countryData: { id: number; name: string; }[];
-
+  informacion_perfil: any;
+  idPaisSeleccionado:any;
 
   constructor(
     private variosservicios: VariosService,
@@ -73,6 +74,8 @@ export class PerfilPage {
       description: ['']
     });
 
+    this.ObtenerProfileInfo();
+
   }
 
   ionViewWillEnter(){
@@ -90,6 +93,18 @@ export class PerfilPage {
      {
       console.log('Bienvenido:',this.verificarloginemail);
     }
+  }
+
+async ObtenerProfileInfo(){
+    this.informacion_perfil=localStorage.getItem('profileInfo');
+    this.informacion_perfil= this.decrypt(this.informacion_perfil);
+    this.informacion_perfil=JSON.parse(this.informacion_perfil);
+    console.log('informacion de perfil', this.informacion_perfil);
+  }
+
+  ONCHANGEpais(event){
+    console.log('valor del change',event.target.value);
+    console.log('id pais',this.idPaisSeleccionado);
   }
 
   ONCHANGEmenuderechosuperior(){

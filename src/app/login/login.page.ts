@@ -140,6 +140,8 @@ export class LoginPage implements OnInit {
                 localStorage.setItem('email', this.encrypt(res.email));
                 localStorage.setItem('username', this.encrypt(res.username));
                 this.router.navigate(['home']);
+                localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
+                
                 // this.menu.enable(true);
               }
               else{

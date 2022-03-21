@@ -52,15 +52,15 @@
 <ion-card>
     <h2 class="title-info1" style="margin-top: 0px;"><ion-icon style="font-size: 20px; margin-right: 10px;" name="id-card-outline"></ion-icon> Información Básica</h2>
     <ion-item lines="none">
-        <ion-label style="font-weight: 500;text-transform: capitalize;" [ngClass]="{'danger': formErrors.name}">Nombre:</ion-label>
-        <ion-input formControlName="name" type="text" style="text-transform: capitalize;" placeholder="Ingrese Nombre"></ion-input>
+        <ion-label color="primary" style="font-weight: 500;text-transform: capitalize;" [ngClass]="{'danger': formErrors.name}">Nombre:</ion-label>
+        <ion-input [(ngModel)]="informacion_perfil.name" formControlName="name" type="text" style="text-transform: capitalize;" placeholder="Ingrese Nombre"></ion-input>
     </ion-item>
     <ion-item lines="none">
-        <ion-label style="font-weight: 500;text-transform: capitalize;" [ngClass]="{'danger': formErrors.lastName}">Apellido:</ion-label>
-        <ion-input formControlName="lastName" style="text-transform: capitalize;" type="text" placeholder="Ingrese Apellido"></ion-input>
+        <ion-label color="primary" style="font-weight: 500;text-transform: capitalize;" [ngClass]="{'danger': formErrors.lastName}">Apellido:</ion-label>
+        <ion-input [(ngModel)]="informacion_perfil.lastname" formControlName="lastName" style="text-transform: capitalize;" type="text" placeholder="Ingrese Apellido"></ion-input>
     </ion-item>         
     <ion-item>
-        <ion-label style="max-width: 20%;font-weight: 500;" [ngClass]="{'danger': formErrors.genderId}">Genero:</ion-label>
+        <ion-label color="primary" style="max-width: 20%;font-weight: 500;" [ngClass]="{'danger': formErrors.genderId}">Genero:</ion-label>
         <ion-select formControlName="genderId" interface="popover" placeholder="Seleccione Género" style="max-width: 80%;padding-left: 0px;width: 100%;">
             <ion-select-option value="1">Masculino</ion-select-option>
             <ion-select-option value="2">Femenino</ion-select-option>
@@ -73,8 +73,8 @@
     <h2 class="title-info1" style="margin-top: 0px;"><ion-icon style="font-size: 20px; margin-right: 10px;" name="location-outline"></ion-icon> Pais</h2>
 
     <ion-item>
-        <ion-label style="max-width: 23%;font-weight: 500;">Pais: </ion-label>
-        <ion-select style="max-width: 77%;padding-left: 0px;width: 100%;" interface="popover" okText="Ok" cancelText="Cancelar" formControlName="countryId" >
+        <ion-label color="primary" style="max-width: 23%;font-weight: 500;">Pais: </ion-label>
+        <ion-select [placeholder]="informacion_perfil.paisnombre" style="max-width: 77%;padding-left: 0px;width: 100%;" interface="popover" okText="Ok" cancelText="Cancelar" formControlName="countryId" >
             <ion-select-option *ngFor="let cadapais of countryData" value="{{cadapais.id}}">{{cadapais.name}}</ion-select-option>
         </ion-select>
     </ion-item>
@@ -84,7 +84,7 @@
 <ion-card>
     <h2 class="title-info1" style="margin-top: 0px;"><ion-icon style="font-size: 20px; margin-right: 10px;" name="person-outline"></ion-icon> Acerca de tí</h2>
     <ion-item lines="none">
-        <ion-label style="font-weight: 500;" [ngClass]="{'danger': formErrors.description}">Descripción:</ion-label>
+        <ion-label color="primary" style="font-weight: 500;" [ngClass]="{'danger': formErrors.description}">Descripción:</ion-label>
         <ion-textarea formControlName="description" type="text" rows="6" cols="20" placeholder="Ingrese una breve descripción sobre tí"></ion-textarea>
     </ion-item>
 
