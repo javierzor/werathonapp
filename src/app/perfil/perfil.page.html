@@ -61,7 +61,7 @@
     </ion-item>         
     <ion-item>
         <ion-label color="primary" style="max-width: 20%;font-weight: 500;" [ngClass]="{'danger': formErrors.genderId}">Genero:</ion-label>
-        <ion-select formControlName="genderId" interface="popover" placeholder="Seleccione Género" style="max-width: 80%;padding-left: 0px;width: 100%;">
+        <ion-select formControlName="genderId" interface="popover" [placeholder]="informacion_perfil.genero" style="max-width: 80%;padding-left: 0px;width: 100%;">
             <ion-select-option value="1">Masculino</ion-select-option>
             <ion-select-option value="2">Femenino</ion-select-option>
         </ion-select>
@@ -85,7 +85,7 @@
     <h2 class="title-info1" style="margin-top: 0px;"><ion-icon style="font-size: 20px; margin-right: 10px;" name="person-outline"></ion-icon> Acerca de tí</h2>
     <ion-item lines="none">
         <ion-label color="primary" style="font-weight: 500;" [ngClass]="{'danger': formErrors.description}">Descripción:</ion-label>
-        <ion-textarea formControlName="description" type="text" rows="6" cols="20" placeholder="Ingrese una breve descripción sobre tí"></ion-textarea>
+        <ion-textarea formControlName="description" type="text" rows="6" cols="20" [placeholder]="informacion_perfil.descripcion"></ion-textarea>
     </ion-item>
 
 

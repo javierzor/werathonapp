@@ -71,7 +71,8 @@ export class PerfilPage {
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       genderId: ['', [Validators.required]],
       countryId: ['', [Validators.required]],
-      description: ['']
+      description: [''],
+      paisnombre: ['']
     });
 
     this.ObtenerProfileInfo();
@@ -166,7 +167,15 @@ sendPhotos(file){
 }
 
 actualziarperfil(){
-  console.log('actualziar perfil',this.registerUserForm.value);
+  if(this.registerUserForm.value.genderId=1){
+    this.registerUserForm.value.genderId='Masculino';
+  }
+  if(this.registerUserForm.value.genderId=2){
+    this.registerUserForm.value.genderId='Femenino';
+  }
+  console.log('actualziar perfil', this.registerUserForm.value);
+
+
 }
 
 
