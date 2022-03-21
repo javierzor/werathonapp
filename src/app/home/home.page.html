@@ -1,5 +1,6 @@
 <ion-header color="light" class="ion-no-border" [translucent]="true">
   <ion-toolbar color="light">
+    
     <ion-buttons *ngIf="verificarloginemail!=null&&verificarloginemail!=undefined" slot="end">
       <ion-button (click)="ONCHANGEmenuderechosuperior()" >
         <ion-avatar style="width:90%; height:90%;">
@@ -33,28 +34,145 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card style="border-radius: 2px;">
+    <br>
+    <ion-card-title style="margin-left: 20px; color: #404040; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif">Plataforma de lanzamiento de ICO abierta</ion-card-title>
+    <br>
+  </ion-card>
+
+
+  <ion-card style="border-radius: 2px;">
+    <ion-grid>
+      <ion-row style="border-bottom: 1px solid #d1d9e5"> 
+        <ion-col>
+          <ion-card-title style="color: #404040; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;">Bienvenido a Werathon Token Ico App</ion-card-title>
+          <p><a></a></p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          &nbsp;          &nbsp;
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row style="text-align: center;">
+        <ion-col style="border-right: 1px solid #d1d9e5">
+          ID de Usuario:<br>
+          ASD123FG
+        </ion-col>
+        <ion-col style="border-right: 1px solid #d1d9e5">
+          Estado:<br>
+          <span class="v2-badge v2-badge-success"><a style="vertical-align: inherit; color:#1ea672;">Activado</a></span>
+        </ion-col>
+        <ion-col>
+          Mi saldo WERA:
+          0.000000000000000000
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          &nbsp;
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 
   <ion-card style="border-radius: 2px;">
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <p><a>Launchpad de ICO</a></p>
-        </ion-col>
-      </ion-row>
-      <ion-row style="border-bottom: 1px solid #d1d9e5">
-        <ion-col>
-          &nbsp;
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <p><a>Account ID</a></p>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          &nbsp;
-        </ion-col>
+        <!-- datos de bitcoin -->
+          <ion-col style="border-right: 1px solid #d1d9e5">
+                <ion-row>
+                      <ion-col>
+                       <a style="white-space:nowrap;"><img style="margin-bottom: -2px;" width="14px" [src]="bitcoinlogo">&nbsp;BTC/USD </a>
+                      </ion-col>
+                      <ion-col>
+                        <a style="text-align: right;">{{this.bitcoinactual}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                      <ion-col>
+                        <a *ngIf="bitcoinactual>bitcoinanterior" style="white-space:nowrap; color:#489c8c;"><strong>˄</strong>&nbsp;</a>
+                        <a *ngIf="bitcoinactual>bitcoinanterior" style="text-align: right;color:#489c8c;"><strong style="font-size: large;">{{bitcoinporcentajedeincremento| number : '1.4-4' }}%</strong>&nbsp;{{this.bitcoinaumento | number : '1.2-2' }}</a>
+                        <a *ngIf="bitcoinactual<bitcoinanterior" style="white-space:nowrap; color:#ea3943;"><strong>˅</strong>&nbsp;</a>
+                        <a *ngIf="bitcoinactual<bitcoinanterior" style="text-align: right;color:#ea3943;"> <strong style="font-size: large;">{{bitcoinporcentajededisminucion| number : '1.4-4' }}%</strong>&nbsp;  {{this.bitcoinreduccion | number : '1.2-2'}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                </ion-row>
+          </ion-col>
+          <!-- datos de trx -->
+          <ion-col style="border-right: 1px solid #d1d9e5">
+                <ion-row>
+                      <ion-col>
+                      <a style="white-space:nowrap;"><img style="margin-bottom: -2px;" width="14px" [src]="trxlogo">&nbsp;TRX/USD </a>
+                      </ion-col>
+                      <ion-col>
+                        <a style="text-align: right;">{{this.trxactual}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                      <ion-col>
+                        <a *ngIf="trxactual>trxanterior" style="white-space:nowrap; color:#489c8c;"><strong>˄</strong>&nbsp;</a>
+                        <a *ngIf="trxactual>trxanterior" style="text-align: right;color:#489c8c;"><strong style="font-size: large;">{{trxporcentajedeincremento| number : '1.4-4' }}%</strong>&nbsp;{{this.trxaumento | number : '1.2-2' }}</a>
+                        <a *ngIf="trxactual<trxanterior" style="white-space:nowrap; color:#ea3943;"><strong>˅</strong>&nbsp;</a>
+                        <a *ngIf="trxactual<trxanterior" style="text-align: right;color:#ea3943;"> <strong style="font-size: large;">{{trxporcentajededisminucion| number : '1.4-4' }}%</strong>&nbsp;  {{this.trxreduccion | number : '1.2-2'}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                </ion-row>
+         </ion-col>
+          <!-- datos de dot -->
+          <ion-col style="border-right: 1px solid #d1d9e5">
+                <ion-row>
+                      <ion-col>
+                      <a style="white-space:nowrap;"><img style="margin-bottom: -2px;" width="14px" [src]="dotlogo">&nbsp;DOT/USD </a>
+                      </ion-col>
+                      <ion-col>
+                        <a style="text-align: right;">{{this.dotactual}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                      <ion-col>
+                        <a *ngIf="dotactual>dotanterior" style="white-space:nowrap; color:#489c8c;"><strong>˄</strong>&nbsp;</a>
+                        <a *ngIf="dotactual>dotanterior" style="text-align: right;color:#489c8c;"><strong style="font-size: large;">{{dotporcentajedeincremento| number : '1.4-4' }}%</strong>&nbsp;{{this.dotaumento | number : '1.2-2' }}</a>
+                        <a *ngIf="dotactual<dotanterior" style="white-space:nowrap; color:#ea3943;"><strong>˅</strong>&nbsp;</a>
+                        <a *ngIf="dotactual<dotanterior" style="text-align: right;color:#ea3943;"> <strong style="font-size: large;">{{dotporcentajededisminucion| number : '1.4-4' }}%</strong>&nbsp;  {{this.dotreduccion | number : '1.2-2'}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                </ion-row>
+           </ion-col>
+
+          <!-- datos de ada -->
+          <ion-col style="border-right: 1px solid #d1d9e5">
+                <ion-row>
+                      <ion-col>
+                      <a style="white-space:nowrap;"><img style="margin-bottom: -2px;" width="14px" [src]="adalogo">&nbsp;ADA/USD </a>
+                      </ion-col>
+                      <ion-col>
+                        <a style="text-align: right;">{{this.adaactual}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                      <ion-col>
+                        <a *ngIf="adaactual>adaanterior" style="white-space:nowrap; color:#489c8c;"><strong>˄</strong>&nbsp;</a>
+                        <a *ngIf="adaactual>adaanterior" style="text-align: right;color:#489c8c;"><strong style="font-size: large;">{{adaporcentajedeincremento| number : '1.4-4' }}%</strong>&nbsp;{{this.adaaumento | number : '1.2-2' }}</a>
+                        <a *ngIf="adaactual<adaanterior" style="white-space:nowrap; color:#ea3943;"><strong>˅</strong>&nbsp;</a>
+                        <a *ngIf="adaactual<adaanterior" style="text-align: right;color:#ea3943;"> <strong style="font-size: large;">{{adaporcentajededisminucion| number : '1.4-4' }}%</strong>&nbsp;  {{this.adareduccion | number : '1.2-2'}}</a>
+                      </ion-col>
+                </ion-row>
+                <ion-row>
+                </ion-row>
+             </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

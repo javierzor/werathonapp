@@ -25,7 +25,15 @@ export class VariosService {
   {headers:new HttpHeaders({"Content-Type":'application/json'})});
   }
 
+  
+  
+  precioscrypto(data){
+    var url = 'https://min-api.cryptocompare.com/data/v2/histominute';
+    return this.http.post(url,data,
+    {headers:new HttpHeaders({"Content-Type":'application/json'})});
 
+    
+  }
   async presentToast(msg) {
     const toast = await this.toastController.create({
       message: msg,
