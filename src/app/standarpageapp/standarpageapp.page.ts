@@ -8,11 +8,12 @@ import { Image } from './../models/image.model';
 import { PaisesService } from '../service/paises.service';
 
 @Component({
-  selector: 'app-direccionderetiro',
-  templateUrl: './direccionderetiro.page.html',
-  styleUrls: ['./direccionderetiro.page.scss'],
+  selector: 'app-standarpageapp',
+  templateUrl: './standarpageapp.page.html',
+  styleUrls: ['./standarpageapp.page.scss'],
 })
-export class DireccionderetiroPage {
+export class StandarpageappPage{
+
 
   secretKey = "123456&Descryption";
   verificarloginemail: any;
@@ -77,4 +78,5 @@ async ObtenerProfileInfo(){
     this.router.navigate(['login']);
   }
 //Termina menu superior y sus ONCHANGE
+
 }

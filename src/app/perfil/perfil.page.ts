@@ -66,8 +66,6 @@ export class PerfilPage {
   {
     this.countryData=this.paises.countryData;    
     this.funcionverificarlogin();
-    // this.conrealtime();
-
     this.registerUserForm = this.builder.group({
       name: null,
       lastName: null,
@@ -77,17 +75,12 @@ export class PerfilPage {
       paisnombre: null,
       profile_url_img: null,
       uid: null
-
     });
-
     this.ObtenerProfileInfo();
-
   }
-
   ionViewWillEnter(){
     this.menu.enable(true);
   }
-
   async ngOnInit() {
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
@@ -108,40 +101,31 @@ async ObtenerProfileInfo(){
     this.informacion_perfil=JSON.parse(this.informacion_perfil);
     console.log('informacion de perfil en Perfil', this.informacion_perfil);
   }
-
-  ONCHANGEpais(event){
-    console.log('valor del change',event.target.value);
-    console.log('id pais',this.idPaisSeleccionado);
-  }
-
   ONCHANGEmenuderechosuperior(){
-    if(this.menuderechosuperior==false){
-      this.menuderechosuperior=true;
-    }
-    else{
-      this.menuderechosuperior=false;
-    }
+    if(this.menuderechosuperior==false)   {this.menuderechosuperior=true;}
+    else{this.menuderechosuperior=false;}
   }
-
   ONCHANGEclickenelcontent(){
     this.menuderechosuperior=false;
-
   }
-
   iramiperfilDelMenuDerechoSuperior(){
     this.router.navigate(['perfil']);
     this.menuderechosuperior=false;
   }
-
   decrypt(textToDecrypt : string){
     return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
   }
-
   logout(){
     localStorage.clear();
     this.router.navigate(['login']);
   }
 //Termina menu superior y sus ONCHANGE
+
+ONCHANGEpais(event){
+  console.log('valor del change',event.target.value);
+  console.log('id pais',this.idPaisSeleccionado);
+}
+
 
 async takePicture(event: any){
   this.ahora_selecciono_otra_foto = true;

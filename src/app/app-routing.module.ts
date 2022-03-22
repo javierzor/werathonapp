@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'standarpageapp',
+    loadChildren: () => import('./standarpageapp/standarpageapp.module').then( m => m.StandarpageappPageModule)
+  },
 ];
 
 @NgModule({
