@@ -37,4 +37,226 @@
     </ion-card>
 <!-- termina el menu superior izquierdo -->
 
+<!-- empiea direcciones de retiro -->
+<section *ngIf="this.step=='1'">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="primary">&nbsp;&nbsp;Direcciones de retiro.&nbsp;&nbsp;</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+      <ion-row>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col offset="3">
+          <ion-button (click)="presentModal()" fill="outline"><ion-icon name="add"></ion-icon>Agregar</ion-button>
+        </ion-col>
+      </ion-row>
+
+
+      
+
+
+
+  <ion-card >
+    <ion-card-header>
+        <ion-card-title>
+          Criptomoneda
+        </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <section>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col style="text-align: center;" size="12" class="ion-text-center">
+            <ion-text>Lista de Direcciones.</ion-text>
+          </ion-col>
+        </ion-row>
+      
+        <ion-row class="ion-align-items-center">
+          <ion-col size="4" class="ion-text-center">
+            <ion-text color="primary" >Tipo</ion-text>
+        
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            <ion-text color="primary" >fecha<br>creacion</ion-text>
+          </ion-col>
+          <ion-col size="2.5" class="ion-text-center">
+            <ion-text color="primary" >Act<br>Desac</ion-text>
+          </ion-col>
+          <ion-col size="2.5" class="ion-text-center">
+            <ion-text color="primary" >Editar<br>Editar</ion-text>
+          </ion-col>
+          </ion-row>
+      
+      <section >
+      
+      
+      
+      
+
+
+      
+      </section>
+      
+      </section>
+      
+    </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="4" class="ion-text-center">
+      <ion-text color="primary" ><strong>Cripto:</strong>TRX</ion-text>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center">
+      <ion-text style="font-size: small;" color="primary" >20/03/2022</ion-text>
+    </ion-col>
+    <ion-col size="2.5" class="ion-text-center">
+      <!-- <ion-button size="small;" *ngIf="cadausuario.tipo_cuenta=='0'" color="success" (click)="activarusuario(cadausuario)">Act</ion-button> -->
+      <ion-button size="small;"  color="danger" >Des</ion-button>
+    </ion-col>
+    <ion-col size="2.5" class="ion-text-center">
+      <ion-button size="small;" color="primary" ><ion-icon style="color:white;" name="create-outline"></ion-icon></ion-button>
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><strong>Dirección:</strong>fh498q32tqy98wqwf924fpoFEW7</ion-col>
+    </ion-row>
+</ion-card>
+
+
+</section>
+
+
+<!-- termina la seccion 1 step 1 -->
+
+<section *ngIf="this.step=='2'">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="primary">&nbsp;&nbsp;Direcciones de retiro.&nbsp;&nbsp;</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+      <ion-row>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col offset="3">
+          <ion-button fill="outline"><ion-icon name="add"></ion-icon>Agregar</ion-button>
+        </ion-col>
+      </ion-row>
+
+
+      
+
+
+
+  <ion-card >
+    <ion-card-header>
+        <ion-card-title>
+          Criptomoneda
+        </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <section>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col style="text-align: center;" size="12" class="ion-text-center">
+            <ion-text>Lista de Direcciones.</ion-text>
+          </ion-col>
+        </ion-row>
+      
+        <ion-row class="ion-align-items-center">
+          <ion-col size="4" class="ion-text-center">
+            <ion-text color="primary" >Tipo</ion-text>
+        
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            <ion-text color="primary" >fecha<br>creacion</ion-text>
+          </ion-col>
+          <ion-col size="2.5" class="ion-text-center">
+            <ion-text color="primary" >Act<br>Desac</ion-text>
+          </ion-col>
+          <ion-col size="2.5" class="ion-text-center">
+            <ion-text color="primary" >Editar<br>Editar</ion-text>
+          </ion-col>
+          </ion-row>
+      
+      <section >
+      
+      
+      
+      
+        <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-text-center">
+          <ion-text color="primary" ><strong>Cripto:</strong>TRX</ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-text-center">
+          <ion-text style="font-size: small;" color="primary" >20/03/2022</ion-text>
+        </ion-col>
+        <ion-col size="2.5" class="ion-text-center">
+          <!-- <ion-button size="small;" *ngIf="cadausuario.tipo_cuenta=='0'" color="success" (click)="activarusuario(cadausuario)">Act</ion-button> -->
+          <ion-button size="small;"  color="danger" >Des</ion-button>
+        </ion-col>
+        <ion-col size="2.5" class="ion-text-center">
+          <ion-button size="small;" color="primary" ><ion-icon style="color:white;" name="create-outline"></ion-icon></ion-button>
+        </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><strong>Dirección:</strong>fh498q32tqy98wqwf924fpoFEW7</ion-col>
+        </ion-row>
+
+        <br>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="4" class="ion-text-center">
+            <ion-text color="primary" ><strong>Cripto:</strong>BTC</ion-text>
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            <ion-text style="font-size: small;" color="primary" >21/03/2022</ion-text>
+          </ion-col>
+          <ion-col size="2.5" class="ion-text-center">
+            <!-- <ion-button size="small;" *ngIf="cadausuario.tipo_cuenta=='0'" color="success" (click)="activarusuario(cadausuario)">Act</ion-button> -->
+            <ion-button size="small;"  color="danger" >Des</ion-button>
+          </ion-col>
+          <ion-col size="2.5" class="ion-text-center">
+            <ion-button size="small;" color="primary" ><ion-icon style="color:white;" name="create-outline"></ion-icon></ion-button>
+          </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col><strong>Dirección:</strong>123456789qwertyuiop123456789</ion-col>
+          </ion-row>
+
+      
+      </section>
+      
+      </section>
+      
+    </ion-card-content>
+</ion-card>
+
+</section>
+
+
+
 </ion-content>

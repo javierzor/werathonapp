@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'standarpageapp',
     loadChildren: () => import('./standarpageapp/standarpageapp.module').then( m => m.StandarpageappPageModule)
   },
+  {
+    path: 'direccionnueva',
+    loadChildren: () => import('./modals/direccionnueva/direccionnueva.module').then( m => m.DireccionnuevaPageModule)
+  },
 ];
 
 @NgModule({

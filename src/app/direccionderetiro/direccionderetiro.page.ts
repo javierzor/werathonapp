@@ -6,6 +6,10 @@ import { VariosService } from '../service/varios.service';
 import { ImageService } from '../service/image.service';
 import { Image } from './../models/image.model';
 import { PaisesService } from '../service/paises.service';
+import { AlertController } from '@ionic/angular';
+import { IonRouterOutlet } from '@ionic/angular';
+import { DireccionnuevaPage } from '../modals/direccionnueva/direccionnueva.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-direccionderetiro',
@@ -19,13 +23,18 @@ export class DireccionderetiroPage {
   menuderechosuperior:boolean=false;
   countryData: { id: number; name: string; }[];
   informacion_perfil: any;
+  step:any;
+  languages_active: any;
 
   constructor(
+    private modalController: ModalController,
+    private routerOutlet: IonRouterOutlet,
     private variosservicios: VariosService,
     private router: Router,
     private menu: MenuController,
     private imageService: ImageService,
     private paises: PaisesService,
+    public alertController: AlertController
 
   ) 
   {
@@ -33,6 +42,7 @@ export class DireccionderetiroPage {
     this.countryData=this.paises.countryData;    
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
+    this.step='1';
   }
   ionViewWillEnter(){
     this.menu.enable(true);
@@ -40,6 +50,7 @@ export class DireccionderetiroPage {
   async ngOnInit() {
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
+    this.step='1';
   }
 
   funcionverificarlogin(){
@@ -77,4 +88,25 @@ async ObtenerProfileInfo(){
     this.router.navigate(['login']);
   }
 //Termina menu superior y sus ONCHANGE
+
+async presentModal() {
+  const modal = await this.modalController.create({
+    component: DireccionnuevaPage,
+    initialBreakpoint: 0.8,
+    breakpoints: [0, 0.8, 3]
+  });
+  modal.onDidDismiss().then((data) => {
+      console.log('data',data);
+      this.step2();
+    });
+
+
+  return await modal.present();
+}
+
+
+  step2(){
+    this.step='2';
+  }
+
 }

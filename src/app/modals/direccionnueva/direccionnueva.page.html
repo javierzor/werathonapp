@@ -1,0 +1,38 @@
+
+<ion-content color="light">
+
+<!-- <ion-button color="danger" click="dismissystep2()"><ion-icon cname="close"></ion-icon></ion-button> -->
+<ion-fab-button (click)="dismiss()" color="danger"><ion-icon name="close"></ion-icon></ion-fab-button>
+
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Tipo:</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-select placeholder="Seleccione Tipo">
+      <ion-select-option>BTC</ion-select-option>
+      <ion-select-option>TRX</ion-select-option>
+      <ion-select-option>DOT</ion-select-option>
+      <ion-select-option>ADA</ion-select-option>
+      <ion-select-option>ETH</ion-select-option>
+    </ion-select>
+  </ion-card-content>
+</ion-card>
+
+<br>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Direccion:</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Direccion:</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
+<ion-button (click)="dismissystep2()"><ion-icon name="checkmark"></ion-icon>Agregar</ion-button>
+
+</ion-content>
