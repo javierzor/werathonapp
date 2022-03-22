@@ -69,12 +69,12 @@ export class PerfilPage {
     // this.conrealtime();
 
     this.registerUserForm = this.builder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      genderId: ['', [Validators.required]],
-      countryId: ['', [Validators.required]],
-      description: [''],
-      paisnombre: [''],
+      name: null,
+      lastName: null,
+      genderId: null,
+      countryId: null,
+      description: null,
+      paisnombre: null,
       profile_url_img: null,
       uid: null
 
@@ -166,13 +166,18 @@ sendPhotos(file){
 }
 
 actualziarperfil(){
-  if(this.registerUserForm.value.genderId=1){
+  if(this.registerUserForm.value.genderId==1){
     this.registerUserForm.value.genderId='Masculino';
   }
-  if(this.registerUserForm.value.genderId=2){
-    this.registerUserForm.value.genderId='Femenino';
+
+  else{
+   if(this.registerUserForm.value.genderId==2){
+      this.registerUserForm.value.genderId='Femenino';
+    }
   }
+  if(this.registerUserForm.value.countryId){
   this.registerUserForm.value.paisnombre=this.paises.countryData[parseInt(this.registerUserForm.value.countryId)-1].name;
+}
   this.registerUserForm.value.uid=this.informacion_perfil.id;
   this.registerUserForm.value.profile_url_img=this.new_url_image;
   this.registerUserForm.value.nombre_solicitud='werathonupdateuser';
