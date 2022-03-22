@@ -4,7 +4,8 @@
       <ion-buttons *ngIf="verificarloginemail!=null&&verificarloginemail!=undefined" slot="end">
         <ion-button (click)="ONCHANGEmenuderechosuperior()" >
           <ion-avatar style="width:90%; height:90%;">
-            <img src="assets/avatarassetsimage.png">
+            <!-- <img src="assets/avatarassetsimage.png"> -->
+            <img [src]="informacion_perfil.profile_url_img==undefined || informacion_perfil.profile_url_img==null || informacion_perfil.profile_url_img=='' ? 'assets/avatarassetsimage.png' : informacion_perfil.profile_url_img"/>
           </ion-avatar>
         </ion-button>
         <ion-button style="text-transform:none" (click)="ONCHANGEmenuderechosuperior()"><ion-text  style="margin-left: -8px;">{{this.verificarloginemail}}</ion-text><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
@@ -39,7 +40,8 @@
 
 <div class="content-img">
     <label for="input">
-    <img style="border-radius: 50em; display: block; object-fit: cover;" [src]="imageProfile==undefined || imageProfile==null || imageProfile=='' ? 'assets/avatarassetsimage.png' : imageProfile"/>
+    <img *ngIf="!ahora_selecciono_otra_foto" style="border-radius: 50em; display: block; object-fit: cover;" [src]="informacion_perfil.profile_url_img==undefined || informacion_perfil.profile_url_img==null || informacion_perfil.profile_url_img=='' ? 'assets/avatarassetsimage.png' : informacion_perfil.profile_url_img"/>
+    <img *ngIf="ahora_selecciono_otra_foto" style="border-radius: 50em; display: block; object-fit: cover;" [src]="imageProfile"/>
     <ion-icon name="camera"></ion-icon>
     </label>
     <input (change)=takePicture($event) class="input" type="file" id="input">

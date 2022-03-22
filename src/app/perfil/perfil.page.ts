@@ -51,6 +51,8 @@ export class PerfilPage {
   countryData: { id: number; name: string; }[];
   informacion_perfil: any;
   idPaisSeleccionado:any;
+  new_url_image: any = null;
+  ahora_selecciono_otra_foto: boolean=false;
 
   constructor(
     private variosservicios: VariosService,
@@ -72,7 +74,10 @@ export class PerfilPage {
       genderId: ['', [Validators.required]],
       countryId: ['', [Validators.required]],
       description: [''],
-      paisnombre: ['']
+      paisnombre: [''],
+      profile_url_img: null,
+      uid: null
+
     });
 
     this.ObtenerProfileInfo();
@@ -85,6 +90,7 @@ export class PerfilPage {
 
   async ngOnInit() {
     this.funcionverificarlogin();
+    this.ObtenerProfileInfo();
   }
   funcionverificarlogin(){
     this.verificarloginemail=localStorage.getItem('email');
@@ -98,9 +104,9 @@ export class PerfilPage {
 
 async ObtenerProfileInfo(){
     this.informacion_perfil=localStorage.getItem('profileInfo');
-    this.informacion_perfil= this.decrypt(this.informacion_perfil);
+    this.informacion_perfil=this.decrypt(this.informacion_perfil);
     this.informacion_perfil=JSON.parse(this.informacion_perfil);
-    console.log('informacion de perfil', this.informacion_perfil);
+    console.log('informacion de perfil en Perfil', this.informacion_perfil);
   }
 
   ONCHANGEpais(event){
@@ -138,6 +144,7 @@ async ObtenerProfileInfo(){
 //Termina menu superior y sus ONCHANGE
 
 async takePicture(event: any){
+  this.ahora_selecciono_otra_foto = true;
   const input = <File>event.target.files[0];
   var reader = new FileReader();
 
@@ -151,18 +158,10 @@ async takePicture(event: any){
 
 sendPhotos(file){
   this.imageService.generateUrl(file).subscribe(x => {
-    let image = new Image();
-    image.urlImage = x.data.url;
-
-    this.imageService.create(image.urlImage).subscribe(i => {
-      let idImage = i.value;
-      console.log(idImage);
-      this.registerUserForm.patchValue({imageId: idImage});
-    }, error => {
-      // this.util.presentToast(error.error.value);
-    }); 
-  }, error => {
-    // this.util.presentToast(error.error.value);
+    let imagentemporal = new Image();
+    imagentemporal.urlImage = x.data.url;
+    this.new_url_image=imagentemporal.urlImage;
+    console.log('this.new_url_image',this.new_url_image);
   }); 
 }
 
@@ -173,9 +172,22 @@ actualziarperfil(){
   if(this.registerUserForm.value.genderId=2){
     this.registerUserForm.value.genderId='Femenino';
   }
-  console.log('actualziar perfil', this.registerUserForm.value);
+  this.registerUserForm.value.paisnombre=this.paises.countryData[parseInt(this.registerUserForm.value.countryId)-1].name;
+  this.registerUserForm.value.uid=this.informacion_perfil.id;
+  this.registerUserForm.value.profile_url_img=this.new_url_image;
+  this.registerUserForm.value.nombre_solicitud='werathonupdateuser';
+  console.log('actualziar perfil CON:', this.registerUserForm.value);
+  this.variosservicios.variasfunciones(this.registerUserForm.value).subscribe(async( res: any ) =>{
+    console.log(' respuesta werathonupdateuser ',res);
+    localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
+    this.ObtenerProfileInfo();
 
+    });
 
+}
+
+encrypt(value : string) : string{
+  return CryptoJS.AES.encrypt(value, this.secretKey.trim()).toString();
 }
 
 

@@ -41,6 +41,7 @@ export class HomePage {
   adareduccion: number = 0;
   adaporcentajedeincremento: number;
   adaporcentajededisminucion: number;
+  informacion_perfil: any;
 
   constructor(
     private variosservicios: VariosService,
@@ -62,10 +63,16 @@ export class HomePage {
   async ngOnInit() {
     this.funcionverificarlogin();
     this.reverificarpreciosde4criptos();
+    this.ObtenerProfileInfo();
  }
 
  //EMPIEZA los menu superior y sus ONCHANGE
-
+  async ObtenerProfileInfo(){
+  this.informacion_perfil=localStorage.getItem('profileInfo');
+  this.informacion_perfil=this.decrypt(this.informacion_perfil);
+  this.informacion_perfil=JSON.parse(this.informacion_perfil);
+  console.log('informacion de perfil en Perfil', this.informacion_perfil);
+}
   funcionverificarlogin(){
     this.verificarloginemail=localStorage.getItem('email');
     this.verificarloginemail= this.decrypt(this.verificarloginemail);
