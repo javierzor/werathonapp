@@ -1,0 +1,262 @@
+<ion-segment (ionChange)="segmentChanged($event)"  
+value="ordenesdefraccionamiento"
+scrollable="true"
+mode="ios"
+[(ngModel)]="segmentModel" 
+(ionChange)="segmentChanged($event)"
+>
+
+<ion-row>
+  <ion-col size="12">
+    <ion-segment-button [disabled]="segmentModel=='puedocambiardepatrocinador'" value="puedocambiardepatrocinador">
+      <ion-button [disabled]="segmentModel=='puedocambiardepatrocinador'" > 
+         <ion-label>¿Puedo cambiar <br>de patrocinador?</ion-label>
+      </ion-button>
+    </ion-segment-button>
+    <ion-segment-button [disabled]="segmentModel=='elsaldodisponiblesepuedepasaraotracuenta'" value="elsaldodisponiblesepuedepasaraotracuenta">
+      <ion-button [disabled]="segmentModel=='elsaldodisponiblesepuedepasaraotracuenta'"> 
+      <ion-label>¿El saldo disponible se <br>puede pasar a otra cuenta?</ion-label>
+      </ion-button>
+    </ion-segment-button>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12">
+    <ion-segment-button [disabled]="segmentModel=='cuandoseprocesanlospagos'" value="cuandoseprocesanlospagos">
+     <ion-button [disabled]="segmentModel=='cuandoseprocesanlospagos'"> 
+        <ion-label>¿Cuándo se <br>procesan los pagos?</ion-label> 
+     </ion-button>
+    </ion-segment-button>
+    <ion-segment-button [disabled]="segmentModel=='quehacersinecesitosoporte'" value="quehacersinecesitosoporte">
+      <ion-button [disabled]="segmentModel=='quehacersinecesitosoporte'"> 
+      <ion-label>¿Qué hacer si<br> si necesito soporte?</ion-label>
+      </ion-button>
+    </ion-segment-button>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12">
+    <ion-segment-button [disabled]="segmentModel=='dondeencuentrolascuentasoficialespararealizartransferencias'" value="dondeencuentrolascuentasoficialespararealizartransferencias">
+      <ion-button [disabled]="segmentModel=='dondeencuentrolascuentasoficialespararealizartransferencias'"> 
+      <ion-label>¿Donde encuentro las cuentas<br>oficiales para realizar transferencias?</ion-label>
+      </ion-button>
+    </ion-segment-button>
+    <ion-segment-button [disabled]="segmentModel=='mienlacedeafiliado'" value="mienlacedeafiliado">
+      <ion-button [disabled]="segmentModel=='mienlacedeafiliado'"> 
+      <ion-label>¿Mi enlace de afiliado?</ion-label>
+      </ion-button>
+    </ion-segment-button>
+  </ion-col>
+</ion-row>
+
+
+</ion-segment>
+
+<ion-content>
+
+  <br *ngIf="segmentModel!=undefined">
+  <br *ngIf="segmentModel!=undefined">
+  <br *ngIf="segmentModel!=undefined">
+
+  <section *ngIf="segmentModel=='puedocambiardepatrocinador'">
+    <ion-fab style="position:absolute; right:10%;top:1%;">
+      <ion-fab-button (click)="segmentModel=undefined">  <ion-icon name="arrow-back-outline"></ion-icon> </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>¿Puedo cambiar de patrocinador?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group>
+          <ion-text>Por políticas administrativas y de procesos no podemos mover a ningun fiduciario de linea de patrocinio.</ion-text>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <section *ngIf="segmentModel=='elsaldodisponiblesepuedepasaraotracuenta'">
+    <ion-fab style="position:absolute; right:10%;top:1%;">
+      <ion-fab-button (click)="segmentModel=undefined">  <ion-icon name="arrow-back-outline"></ion-icon> </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <br>
+      <ion-card-header>
+        <ion-card-title>¿El saldo disponible se puede pasar a otra cuenta?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group>
+          <ion-text>Al no ser una empresa de multinivel, no podemos trabajar con saldos entre usuarios, por lo tanto no se puede transferir saldo de un Fiduciario a otro.</ion-text>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <section *ngIf="segmentModel=='cuandoseprocesanlospagos'">
+    <ion-fab style="position:absolute; right:10%;top:1%;">
+      <ion-fab-button (click)="segmentModel=undefined">  <ion-icon name="arrow-back-outline"></ion-icon> </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <br>
+      <ion-card-header>
+        <ion-card-title>¿Cuándo se procesan los pagos?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group>
+          <ion-text>Los envios de dinero pueden demorar hasta 24hs hábiles para verse reflejado en su plataforma.</ion-text>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <section *ngIf="segmentModel=='quehacersinecesitosoporte'">
+    <ion-fab style="position:absolute; right:10%;top:1%;">
+      <ion-fab-button (click)="segmentModel=undefined">  <ion-icon name="arrow-back-outline"></ion-icon> </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <br>
+      <ion-card-header>
+        <ion-card-title>¿Qué hacer si necesito soporte?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group>
+          <ion-text>Para contactar al equipo de soporte debes ir a la sección del menu SOPORTE-MENSAJES (Próximamente estaremos realizando un video de este proceso) .</ion-text>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <section *ngIf="segmentModel=='dondeencuentrolascuentasoficialespararealizartransferencias'">
+    <ion-fab style="position:absolute; right:10%;top:1%;">
+        <ion-fab-button (click)="segmentModel=undefined">  <ion-icon name="arrow-back-outline"></ion-icon> </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <br>
+      <ion-card-header>
+        <ion-card-title>¿Donde encuentro las cuentas oficiales para realizar transferencias?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group>
+          <ion-text>Las cuentas se encuentran en el menu del sistema en la sección de preguntas frecuentes - metodos de pago.</ion-text>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <section *ngIf="segmentModel=='mienlacedeafiliado'">
+    <ion-fab style="position:absolute; right:10%;top:1%;">
+      <ion-fab-button (click)="segmentModel=undefined">  <ion-icon name="arrow-back-outline"></ion-icon> </ion-fab-button>
+    </ion-fab>
+    <ion-card>
+      <br>
+      <ion-card-header>
+        <ion-card-title>¿mi enlace de afiliado?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-accordion-group>
+          <ion-text>Su enlace de afiliado único le permite ganar el 25% de todas sus personas referidas que eligen invertir en Werathon Token ICO. 
+            El enlace de referencia está configurado de esta manera :
+            rastreará a todos los visitantes que hagan clic en el enlace colocando una cookie y registrará la huella digital del navegador. El 25% de todas las compras WERA de ese visitante específico dentro de los 30 días se acreditarán en su cuenta de afiliado.
+            .</ion-text>
+        </ion-accordion-group>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+
+  <section *ngIf="segmentModel==undefined||segmentModel==null||segmentModel==''">
+
+    <section>
+      <ion-card>
+        <br>
+        <ion-card-header>
+          <ion-card-title>¿Puedo cambiar de patrocinador?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-accordion-group>
+            <ion-text>Por políticas administrativas y de procesos no podemos mover a ningun fiduciario de linea de patrocinio.</ion-text>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+    </section>
+  
+    <section>
+      <ion-card>
+        <br>
+        <ion-card-header>
+          <ion-card-title>¿El saldo disponible se puede pasar a otra cuenta?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-accordion-group>
+            <ion-text>Al no ser una empresa de multinivel, no podemos trabajar con saldos entre usuarios, por lo tanto no se puede transferir saldo de un Fiduciario a otro.</ion-text>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+    </section>
+  
+    <section>
+      <ion-card>
+        <br>
+        <ion-card-header>
+          <ion-card-title>¿Cuándo se procesan los pagos?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-accordion-group>
+            <ion-text>Los envios de dinero pueden demorar hasta 24hs hábiles para verse reflejado en su plataforma.</ion-text>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+    </section>
+  
+    <section>
+      <ion-card>
+        <br>
+        <ion-card-header>
+          <ion-card-title>¿Qué hacer si necesito soporte?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-accordion-group>
+            <ion-text>Para contactar al equipo de soporte debes ir a la sección del menu SOPORTE-MENSAJES (Próximamente estaremos realizando un video de este proceso) .</ion-text>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+    </section>
+  
+    <section>
+      <ion-card>
+        <br>
+        <ion-card-header>
+          <ion-card-title>¿Donde encuentro las cuentas oficiales para realizar transferencias?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-accordion-group>
+            <ion-text>Las cuentas se encuentran en el menu del sistema en la sección de preguntas frecuentes - metodos de pago.</ion-text>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+    </section>
+  
+    <section>
+      <ion-card>
+        <br>
+        <ion-card-header>
+          <ion-card-title>¿Mi enlace de afiliado?</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-accordion-group>
+            <ion-text>Su enlace de afiliado único le permite ganar el 25% de todas sus personas referidas que eligen invertir en Werathon Token ICO. 
+              El enlace de referencia está configurado de esta manera :
+              rastreará a todos los visitantes que hagan clic en el enlace colocando una cookie y registrará la huella digital del navegador. El 25% de todas las compras WERA de ese visitante específico dentro de los 30 días se acreditarán en su cuenta de afiliado.
+              .</ion-text>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+    </section>
+  
+
+
+  </section>
+
+</ion-content>
+
+
+

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import * as CryptoJS from 'crypto-js';
+import { VariosService } from './service/varios.service';
 
 @Component({
   selector: 'app-root',
@@ -35,11 +36,19 @@ export class AppComponent {
 
 
   constructor(
-    private menu: MenuController
+    
+    private menu: MenuController,
+    public varios: VariosService
+
   ) 
   
   {
 
+    this.funcionverificartipocuenta();
+  }
+  
+  ngOnInit() {
+    this.funcionverificartipocuenta();
   }
 
   iralpaneladmin(){
@@ -87,13 +96,13 @@ export class AppComponent {
     }
   }
 
-  funcionverificartipocuenta(){
-    this.tipo_cuenta=localStorage.getItem('email');
+  async funcionverificartipocuenta(){
+    this.tipo_cuenta=localStorage.getItem('tipo_cuenta');
     this.tipo_cuenta= this.decrypt(this.tipo_cuenta);
-    console.log('this.verificarlogin', this.tipo_cuenta);
+    console.log('this.tipo_cuenta', this.tipo_cuenta);
     if(this.tipo_cuenta)
      {
-      console.log('Bienvenido:',this.tipo_cuenta);
+      console.log('Bienvenido: tipo_cuenta',this.tipo_cuenta);
     }
   }
 

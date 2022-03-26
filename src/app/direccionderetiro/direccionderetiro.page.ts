@@ -97,7 +97,9 @@ async presentModal() {
   });
   modal.onDidDismiss().then((data) => {
       console.log('data',data);
-      this.step2();
+      if(data.data.dismissed==true){
+        this.step2();
+      }
     });
 
 

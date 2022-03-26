@@ -52,7 +52,7 @@ export class HomePage {
   {
     this.funcionverificarlogin();
     this.reverificarpreciosde4criptos();
-    // this.conrealtime();
+    this.conrealtime();
   }
 
   ionViewWillEnter(){

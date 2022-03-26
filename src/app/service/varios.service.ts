@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class VariosService {
 
   isLoading = false;
-
+  tipo_cuenta:any;
   constructor(
     public toastController: ToastController,
     private loadingController: LoadingController,

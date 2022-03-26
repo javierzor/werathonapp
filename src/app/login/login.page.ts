@@ -136,7 +136,8 @@ export class LoginPage implements OnInit {
                 this.variosservicios.loading2segundos("Verificacíon exitosa...");
                 this.variosservicios.quitarloading();
                 localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('tipo_cuenta', this.encrypt(res.tipo_cuenta));
+                this.variosservicios.tipo_cuenta=res.tipo_cuenta;
+                // localStorage.setItem('tipo_cuenta', this.encrypt(res.tipo_cuenta));
                 localStorage.setItem('email', this.encrypt(res.email));
                 localStorage.setItem('username', this.encrypt(res.username));
                 this.router.navigate(['home']);
