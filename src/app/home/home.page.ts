@@ -3,6 +3,7 @@ import * as CryptoJS from 'crypto-js';
 import {Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { VariosService } from '../service/varios.service';
+import { Clipboard } from '@awesome-cordova-plugins/clipboard/ngx';
 
 @Component({
   selector: 'app-home',
@@ -47,7 +48,7 @@ export class HomePage {
     private variosservicios: VariosService,
     private router: Router,
     private menu: MenuController,
-
+    private clipboard: Clipboard
   ) 
   {
     this.funcionverificarlogin();
@@ -229,6 +230,20 @@ verificarada(){
       this.adaporcentajededisminucion=((this.adaanterior-this.adaactual) / (this.adaanterior) ) * (100);
     }
   });
+}
+
+copiarreferido(){
+  this.clipboard.copy('Hello world');
+
+  
+}
+
+async copiar(texto) {
+  if (navigator.clipboard) {
+    try {
+      await navigator.clipboard.writeText(texto);
+    } catch (err) {}
+  }
 }
 
 

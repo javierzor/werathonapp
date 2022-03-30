@@ -25,6 +25,7 @@ export class DireccionderetiroPage {
   informacion_perfil: any;
   step:any;
   languages_active: any;
+  direccionesderetiro: any;
 
   constructor(
     private modalController: ModalController,
@@ -51,6 +52,21 @@ export class DireccionderetiroPage {
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
     this.step='1';
+    this.obtenerdirecciones();
+  }
+
+  obtenerdirecciones(){
+    this.informacion_perfil=localStorage.getItem('profileInfo');
+    this.informacion_perfil=this.decrypt(this.informacion_perfil);
+    this.informacion_perfil=JSON.parse(this.informacion_perfil);
+    var datawerathonobtenerdirecciones = {
+      nombre_solicitud: 'werathonobtenerdirecciones',
+      id_user: this.informacion_perfil.id
+    }
+     this.variosservicios.variasfunciones(datawerathonobtenerdirecciones).subscribe(async( res: any ) =>{
+       console.log('respuesta de werathonobtenerdirecciones', res);
+       this.direccionesderetiro=res;
+     });
   }
 
   funcionverificarlogin(){
@@ -98,7 +114,7 @@ async presentModal() {
   modal.onDidDismiss().then((data) => {
       console.log('data',data);
       if(data.data.dismissed==true){
-        this.step2();
+        this.obtenerdirecciones();
       }
     });
 
@@ -107,8 +123,6 @@ async presentModal() {
 }
 
 
-  step2(){
-    this.step='2';
-  }
+
 
 }

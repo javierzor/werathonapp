@@ -4,6 +4,7 @@ import { VariosService } from '../service/varios.service';
 import { PaisesService } from '../service/paises.service';
 import {Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -31,11 +32,16 @@ export class LoginPage implements OnInit {
   paisdataseleccionado: any;
   colocouncorreoperonoelpunto:any;
   registrandoseconarrobaenelusuario: boolean = false;
+  parametrosporlink: any;
+  referidor: any;
+  bloquearbotonreferido: boolean = false;
+
   constructor(
     private router: Router,
     private variosservicios: VariosService,
     private paises: PaisesService,
-    private menu: MenuController
+    private menu: MenuController,
+    private route: ActivatedRoute,
 
   ) 
   
@@ -54,8 +60,23 @@ export class LoginPage implements OnInit {
     // this.variosservicios.quitarloading();
     
      this.countryData=this.paises.countryData;    
-
+     this.comprobarSiFueReferido();
   }
+
+  comprobarSiFueReferido(){
+    this.route.params.subscribe(params => {
+    this.parametrosporlink = params; 
+    if(this.parametrosporlink.referido){
+      console.log('Llego REFERIDO. Esta info llego por el enlace (Link)=', this.parametrosporlink);   
+      this.referidor =  this.parametrosporlink.referido;
+      this.bloquearbotonreferido=true;
+    }
+    else{
+      console.log('El usuario no llego referido', this.parametrosporlink);       
+    }
+
+    });
+    }
 
   ionViewWillEnter(){
     this.menu.enable(false);
@@ -137,12 +158,10 @@ export class LoginPage implements OnInit {
                 this.variosservicios.quitarloading();
                 localStorage.setItem('isLoggedIn', 'true');
                 this.variosservicios.tipo_cuenta=res.tipo_cuenta;
-                // localStorage.setItem('tipo_cuenta', this.encrypt(res.tipo_cuenta));
                 localStorage.setItem('email', this.encrypt(res.email));
                 localStorage.setItem('username', this.encrypt(res.username));
                 this.router.navigate(['home']);
                 localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
-                
                 // this.menu.enable(true);
               }
               else{
@@ -177,7 +196,8 @@ export class LoginPage implements OnInit {
         name:this.nombre,
         lastname:this.apellido,
         paisnombre:this.paisdataseleccionado.name,
-        paisID:this.paisdataseleccionado.id
+        paisID:this.paisdataseleccionado.id,
+        referidor: this.referidor
       }
     console.log('el usuario intenta registrarse con esta data,',datawerathoncreateuser);
     this.variosservicios.loading18segundos("Espere, Se esta registrando su cuenta de usuario...");
@@ -187,6 +207,12 @@ export class LoginPage implements OnInit {
         this.variosservicios.quitarloading();
         this.variosservicios.loading2segundos("Registro exitoso, Regirigiendo...");
         this.variosservicios.presentToast("..::Usuario Registrado correctamente::..");
+        localStorage.setItem('isLoggedIn', 'true');
+        this.variosservicios.tipo_cuenta=res.tipo_cuenta;
+        localStorage.setItem('email', this.encrypt(res.email));
+        localStorage.setItem('username', this.encrypt(res.username));
+        this.router.navigate(['home']);
+        localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
         this.router.navigate(['home']);
       }
      },

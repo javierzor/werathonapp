@@ -80,6 +80,7 @@ export class PerfilPage {
   }
   ionViewWillEnter(){
     this.menu.enable(true);
+    this.ObtenerProfileInfo();
   }
   async ngOnInit() {
     this.funcionverificarlogin();
@@ -112,9 +113,7 @@ async ObtenerProfileInfo(){
     this.router.navigate(['perfil']);
     this.menuderechosuperior=false;
   }
-  decrypt(textToDecrypt : string){
-    return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
-  }
+
   logout(){
     localStorage.clear();
     this.router.navigate(['login']);
@@ -177,6 +176,10 @@ actualziarperfil(){
 
 encrypt(value : string) : string{
   return CryptoJS.AES.encrypt(value, this.secretKey.trim()).toString();
+}
+
+decrypt(textToDecrypt : string){
+  return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
 }
 
 

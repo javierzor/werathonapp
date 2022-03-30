@@ -92,7 +92,11 @@
         <ion-textarea formControlName="description" type="text" rows="6" cols="20" [placeholder]="informacion_perfil.descripcion"></ion-textarea>
     </ion-item>
 
-
+    <ion-text color="primary" size="small" style="font-size: small; margin-left: 15px;"
+     *ngIf="informacion_perfil.referidor!=null&&informacion_perfil.referidor!=undefined">
+     Referido por: <strong>{{informacion_perfil.referidor}}</strong> </ion-text>
+     <br *ngIf="informacion_perfil.referidor!=null&&informacion_perfil.referidor!=undefined">
+     <br *ngIf="informacion_perfil.referidor!=null&&informacion_perfil.referidor!=undefined">
 </ion-card>
 
 

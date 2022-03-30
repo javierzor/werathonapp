@@ -10,12 +10,12 @@
     <ion-card-title>Tipo:</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-select placeholder="Seleccione Tipo">
-      <ion-select-option>BTC</ion-select-option>
-      <ion-select-option>TRX</ion-select-option>
-      <ion-select-option>DOT</ion-select-option>
-      <ion-select-option>ADA</ion-select-option>
-      <ion-select-option>ETH</ion-select-option>
+    <ion-select [(ngModel)]="tipo_direccion" placeholder="Seleccione Tipo">
+      <ion-select-option value="BTC">BTC</ion-select-option>
+      <ion-select-option value="TRX">TRX</ion-select-option>
+      <ion-select-option value="DOT">DOT</ion-select-option>
+      <ion-select-option value="ADA">ADA</ion-select-option>
+      <ion-select-option value="ETH">ETH</ion-select-option>
     </ion-select>
   </ion-card-content>
 </ion-card>
@@ -23,16 +23,16 @@
 <br>
 <ion-card>
   <ion-card-header>
-    <ion-card-title>Direccion:</ion-card-title>
+    <ion-card-title>Dirección:</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <ion-item>
       <ion-label position="floating">Direccion:</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="direccion"></ion-input>
     </ion-item>
   </ion-card-content>
 </ion-card>
 
-<ion-button (click)="dismissystep2()"><ion-icon name="checkmark"></ion-icon>Agregar</ion-button>
+<ion-button (click)="agregardireccion()"><ion-icon name="checkmark"></ion-icon>Agregar</ion-button>
 
 </ion-content>
