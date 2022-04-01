@@ -43,6 +43,7 @@ export class HomePage {
   adaporcentajedeincremento: number;
   adaporcentajededisminucion: number;
   informacion_perfil: any;
+  misaldo: any;
 
   constructor(
     private variosservicios: VariosService,
@@ -54,6 +55,7 @@ export class HomePage {
     this.funcionverificarlogin();
     this.reverificarpreciosde4criptos();
     this.conrealtime();
+    this.obtenerMiSaldo();
   }
 
   ionViewWillEnter(){
@@ -65,6 +67,7 @@ export class HomePage {
     this.funcionverificarlogin();
     this.reverificarpreciosde4criptos();
     this.ObtenerProfileInfo();
+    this.obtenerMiSaldo();
  }
 
  //EMPIEZA los menu superior y sus ONCHANGE
@@ -112,6 +115,22 @@ export class HomePage {
     this.router.navigate(['login']);
   }
 //Termina menu superior y sus ONCHANGE
+
+
+obtenerMiSaldo(){
+  this.informacion_perfil=localStorage.getItem('profileInfo');
+  this.informacion_perfil=this.decrypt(this.informacion_perfil);
+  this.informacion_perfil=JSON.parse(this.informacion_perfil);
+  var datawerathonsaldodeusuario = {
+    nombre_solicitud: 'werathonsaldodeusuario',
+    id_user: this.informacion_perfil.id
+  }
+   this.variosservicios.variasfunciones(datawerathonsaldodeusuario).subscribe(async( res: any ) =>{
+     console.log('respuesta de werathonsaldodeusuario', res);
+     this.misaldo=res;
+   });
+}
+
 
 reverificarpreciosde4criptos(){
   // sin realtime

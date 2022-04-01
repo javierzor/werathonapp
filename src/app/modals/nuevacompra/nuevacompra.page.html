@@ -1,0 +1,77 @@
+
+<ion-content color="light">
+
+  <!-- <ion-button color="danger" click="dismissystep2()"><ion-icon cname="close"></ion-icon></ion-button> -->
+  <ion-fab-button  size="small" (click)="dismiss()" color="danger"><ion-icon name="close"></ion-icon></ion-fab-button>
+  
+<ion-grid>
+<ion-row>
+<ion-col [size]="metodoindex ? '10' : 12">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title *ngIf="infovariable&&!mostrarinformaciondepago">Metodo:</ion-card-title>
+      <ion-card-title *ngIf="infovariable&&mostrarinformaciondepago">Metodo: <a style="font-size:small;"  *ngIf="infovariable.nombre_direccion">{{infovariable.nombre_direccion}},</a><a style="font-size:small;"  *ngIf="infovariable.direccion"> {{infovariable.direccion}},</a> <a style="font-size:small;"  *ngIf="infovariable.nombre_y_apellido"><strong> A nombre:</strong>{{infovariable.nombre_y_apellido}}</a><a style="font-size:small;"  *ngIf="infovariable.extra1">, {{infovariable.extra1}}</a> <a style="font-size:small;"  *ngIf="infovariable.extra2">,{{infovariable.extra2}}</a></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-select (ionChange)="ONCHANGEmetodo($event)" [(ngModel)]="metodoindex" placeholder="Seleccione Tipo">
+        <ion-select-option *ngFor="let admindireccion of admindirecciones; let i=index;" value="{{i}}">{{admindireccion.nombre_direccion}}</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
+</ion-col>
+
+<ion-col size="2" *ngIf="metodoindex" >
+  <ion-fab-button color="danger" *ngIf="mostrarinformaciondepago" (click)="NoMostrarInfo()" size="small">&nbsp;-<ion-icon name="reader-outline"></ion-icon></ion-fab-button>
+  <ion-fab-button *ngIf="!mostrarinformaciondepago" (click)="MostrarInfo()" size="small">&nbsp;Info<ion-icon name="reader-outline"></ion-icon></ion-fab-button>
+</ion-col>
+</ion-row>
+</ion-grid>
+
+
+
+  <ion-card>
+    <ion-card-content class="ion-no-no-padding" no-padding>
+      <ion-card-title>Monto:</ion-card-title>
+      <ion-grid class="ion-no-no-padding" no-padding>
+        <ion-row class="ion-no-no-padding" no-padding>
+          <ion-col size="6" class="ion-no-no-padding" no-padding>
+            <ion-item>
+              <ion-label position="floating">Weras:</ion-label>
+              <ion-input min="0" max="9999999999999999" type="number" (ionFocus)="IONFOCUSmontoenweras()" [(ngModel)]="montoenweras"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-text *ngIf="montoenweras" style="position:absolute; bottom:0px; left:20px; font-size:12px; color: #784d94;">Son {{montoenweras*0.2 | number : '1.2-2' }} $</ion-text>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Dolares:</ion-label>
+              <ion-input min="0" max="9999999999999999" type="number" (ionFocus)="IONFOCUSmontoendolares()" [(ngModel)]="montoendolares"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-text *ngIf="montoendolares" style="position:absolute; bottom:0px; right:15px; font-size:11px; color: #784d94;">Recibira {{montoendolares/0.2 | number : '1.2-2' }} Weras</ion-text>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+
+
+    <div class="content-img">
+      <label  style="cursor:pointer;"  for="input">Adjunta Su recibo aqui.
+      <img style="border-radius: 50em; display: block; object-fit: cover;" [src]="!new_url_image ? 'assets/factura.webp' : new_url_image"/>
+      <ion-icon name="camera"></ion-icon>
+      </label>
+      <input (change)=takePicture($event) class="input" type="file" id="input">
+  </div>
+
+  <ion-icon *ngIf="new_url_image" color="success" style="font-size:xx-large;" name="checkmark-circle"></ion-icon>
+
+  </ion-card>
+  
+  
+  
+  <ion-button style="position:fixed; right:0; bottom:0;" (click)="agregarcompra()">
+    <ion-icon name="checkmark"></ion-icon>Agregar</ion-button>
+  
+</ion-content>
+

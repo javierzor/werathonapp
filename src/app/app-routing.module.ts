@@ -51,6 +51,14 @@ const routes: Routes = [
     path: 'direccionnueva',
     loadChildren: () => import('./modals/direccionnueva/direccionnueva.module').then( m => m.DireccionnuevaPageModule)
   },
+  {
+    path: 'nuevacompra',
+    loadChildren: () => import('./modals/nuevacompra/nuevacompra.module').then( m => m.NuevacompraPageModule)
+  },
+  {
+    path: 'visualizadorimagenes',
+    loadChildren: () => import('./modals/visualizadorimagenes/visualizadorimagenes.module').then( m => m.VisualizadorimagenesPageModule)
+  },
 ];
 
 @NgModule({
