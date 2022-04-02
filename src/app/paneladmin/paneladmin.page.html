@@ -1,0 +1,260 @@
+<!-- empieza el menu superior izquierdo -->
+<ion-header color="light" class="ion-no-border" [translucent]="true">
+  <ion-toolbar color="light">
+    
+    <ion-buttons *ngIf="informacion_perfil!=null&&informacion_perfil!=undefined" slot="end">
+      <ion-button (click)="ONCHANGEmenuderechosuperior()" >
+        <ion-avatar style="width:90%; height:90%;">
+          <!-- <img src="assets/avatarassetsimage.png"> -->
+          <img [src]="informacion_perfil.profile_url_img==undefined || informacion_perfil.profile_url_img==null || informacion_perfil.profile_url_img=='' ? 'assets/avatarassetsimage.png' : informacion_perfil.profile_url_img"/>
+        </ion-avatar>
+      </ion-button>
+      <ion-button style="text-transform:none" (click)="ONCHANGEmenuderechosuperior()"><ion-text  style="margin-left: -8px;">{{this.informacion_perfil.email}}</ion-text><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido si no se tiene informacion del tipo de cuenta -->
+<!-- <ion-content *ngIf="!this.varios.tipo_cuenta">
+  <ion-item routerLink="/login"><ion-button>Reingresar</ion-button>
+  </ion-item>
+</ion-content> -->
+
+
+<ion-content color="light" (click)="ONCHANGEclickenelcontent()" [fullscreen]="true">
+
+  <ion-card *ngIf="menuderechosuperior==true" style="position:sticky; float: right; width: fit-content; top:0%; z-index: 9999;">
+    <ion-card-header>
+      <ion-card-title>Mi Cuenta</ion-card-title>
+      <ion-card-subtitle>Menu de Usuario</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+          <ion-list>
+          <ion-item>
+          <ion-label (click)="iramiperfilDelMenuDerechoSuperior()" style="cursor: pointer;">Mi perfil</ion-label>
+          </ion-item>
+          <ion-item>
+          <ion-label style="cursor: pointer;">Mi Cuenta</ion-label>
+          </ion-item>
+          <ion-item (click)="logout()" style="cursor: pointer;">
+          <ion-label>Salir</ion-label>
+          </ion-item>
+          </ion-list>
+    </ion-card-content>
+  </ion-card>
+<!-- termina el menu superior izquierdo -->
+
+<ion-segment (ionChange)="segmentChanged()"  
+value="ordenesdefraccionamiento"
+scrollable="true"
+mode="ios"
+[(ngModel)]="segmentModel" 
+(ionChange)="segmentChanged()"
+>
+
+    <ion-segment-button [disabled]="segmentModel=='solicitudesdecompras'" value="solicitudesdecompras">
+      <ion-button [disabled]="segmentModel=='solicitudesdecompras'" > 
+         <ion-label>Solicitudes <br>de Compras</ion-label>
+      </ion-button>
+    </ion-segment-button>
+    <ion-segment-button [disabled]="segmentModel=='activardesacusuario'" value="activardesacusuario">
+      <ion-button [disabled]="segmentModel=='activardesacusuario'"> 
+      <ion-label>Activar/ <br>Desac. usuario</ion-label>
+      </ion-button>
+    </ion-segment-button>
+
+    <ion-segment-button [disabled]="segmentModel=='veraumentarfase'" value="veraumentarfase">
+     <ion-button [disabled]="segmentModel=='veraumentarfase'"> 
+        <ion-label>Ver/Aumentar<br>Fase</ion-label> 
+     </ion-button>
+    </ion-segment-button>
+    <ion-segment-button [disabled]="segmentModel=='chatdesoporte'" value="chatdesoporte">
+      <ion-button [disabled]="segmentModel=='chatdesoporte'"> 
+      <ion-label>Chat de Soporte</ion-label>
+      </ion-button>
+    </ion-segment-button>
+
+</ion-segment>
+
+<section style="text-align:center;">
+<ion-text color="primary" *ngIf="segmentModel=='solicitudesdecompras'"><h3>Solicitudes de compras</h3></ion-text>
+<ion-text color="primary" *ngIf="segmentModel=='activardesacusuario'"><h3>Activar desactivar usuarios</h3></ion-text>
+<ion-text color="primary" *ngIf="segmentModel=='veraumentarfase'"><h3>Ver/Aumentar Fase</h3></ion-text>
+<ion-text color="primary" *ngIf="segmentModel=='chatdesoporte'"><h3>Chat de Soporte</h3></ion-text>
+<ion-text color="primary" *ngIf="!segmentModel"><h2>Bienvenido Admin</h2></ion-text>
+</section>
+
+<section *ngIf="segmentModel=='solicitudesdecompras'">
+<ion-grid class="ion-no-padding" no-padding>
+  <ion-card *ngFor="let movimiento of respuestadewerathonadminobtenermovimientos">
+  <ion-row class="ion-no-padding" no-padding>
+    <ion-col size="3.5"  class="ion-no-padding" no-padding>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">Usuario:</a></span>
+
+      {{movimiento.userdetalles.username}}
+      
+      <br>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">A mi:</a></span>
+        {{movimiento.admindireccion.nombre_direccion}}
+      <br>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">Weras:</a></span>
+        {{movimiento.monto}}
+      <br>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">En Dolares:</a></span>
+        {{movimiento.monto*precio_wera_usd| number : '1.2-2'}} $
+    </ion-col>
+    <ion-col  size="4.5"   class="ion-no-padding" no-padding>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">A mi:</a></span> 
+        {{movimiento.admindireccion.nombre_direccion}}
+
+      <br>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">Dirección:</a></span> 
+      {{movimiento.admindireccion.direccion}}
+      <br>
+      <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+        <a style="vertical-align: inherit; color:#ffffff;">Fecha:</a></span> 
+        {{movimiento.fecha}}
+    </ion-col>
+    <ion-col  size="4"   class="ion-no-padding" no-padding>
+      <ion-button color="danger" text-capitalize (click)="suspendermovimiento(movimiento)" *ngIf="movimiento.status=='verificado'">
+        Suspender
+      </ion-button>
+      <ion-button text-capitalize (click)="verificarmovimiento(movimiento)" *ngIf="movimiento.status=='pendiente'">
+        <strong>Verificar</strong><ion-icon color="success" name="checkmark-done-circle"></ion-icon>
+      </ion-button>
+      <br>
+      <ion-button (click)="VerImagen(movimiento.reciboImgUrl)">
+        Ver Recibo
+      </ion-button>
+      
+    </ion-col>
+  </ion-row>
+</ion-card>
+</ion-grid>
+
+</section>
+
+<section *ngIf="segmentModel=='activardesacusuario'">
+
+<ion-grid>
+  <ion-card *ngFor="let cadausuario of respuestadewerathonadminobtenerlistadeuduarios">
+    <ion-row>
+      <ion-col >
+        <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+          <a style="vertical-align: inherit; color:#ffffff;">User:</a></span>
+          {{cadausuario.username}}
+          <br>
+          <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+            <a style="vertical-align: inherit; color:#ffffff;">mail:</a></span>
+            {{cadausuario.email}}
+          <br>
+          <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+            <a style="vertical-align: inherit; color:#ffffff;">Pass:</a></span>
+            {{cadausuario.password }}
+          <br>
+          <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
+            <a style="vertical-align: inherit; color:#ffffff;">Fecha:</a></span>
+            {{cadausuario.create_date| date:'shortDate':'GMT-3'}}&nbsp;{{cadausuario.create_date | date:'shortTime':'GMT-3'}}
+      </ion-col>
+  
+      <ion-col>
+        <ion-button color="danger" (click)="suspenderusuario(cadausuario)" *ngIf="cadausuario.status=='activo'">Desactivar</ion-button>
+        <ion-button color="success" (click)="activarusuario(cadausuario)" *ngIf="cadausuario.status=='desactivado'">Activar</ion-button>
+
+        <!-- <ion-button>Desactivar</ion-button> -->
+               
+      </ion-col>
+  
+    </ion-row>
+  </ion-card>
+</ion-grid>
+
+</section>
+
+
+<section *ngIf="segmentModel=='veraumentarfase'">
+
+  <ion-grid class="ion-no-padding" no-padding>
+    <ion-text>Actualmente <a style="color: #784d94;">1</a> Wera es <a style="color: #784d94;">{{precio_wera_usd}}</a> Dolares</ion-text>
+        <br><br>
+
+      <ion-row  style="text-align:center;">
+          <ion-col size="0.5">
+            <ion-text color="primary">Nº</ion-text>
+          </ion-col>
+          <ion-col size="1.75">
+            <ion-text color="primary">Lim.</ion-text>
+          </ion-col>
+          <ion-col size="2.25">
+            <ion-text color="primary">Act.</ion-text>
+          </ion-col>
+          <ion-col size="1">
+            <ion-text style="font-size: small;" color="primary">1=$</ion-text>
+          </ion-col>
+          <ion-col size="2.5">
+            <ion-text color="primary">%</ion-text>
+          </ion-col>
+          <ion-col size="4">
+            <ion-text color="primary">A.TK.</ion-text>
+          </ion-col>
+
+      </ion-row>
+
+
+      <ion-row style="border-bottom: 1px solid #784d94;" *ngFor="let cadafase of respuestadewerathonobtenertablafase" class="ion-no-padding" no-padding>
+        <ion-col size="0.5" style="font-size: small; text-align:center;" class="ion-no-padding" no-padding>
+          {{cadafase.numero}}
+        </ion-col>
+        <ion-col size="1.75" style="font-size: small; text-align:center;" class="ion-no-padding" no-padding>
+          {{cadafase.limitefaseusd}}
+        </ion-col>
+        <ion-col size="2.25" style="font-size: small; text-align:center;" class="ion-no-padding" no-padding>
+
+          <ion-icon style="font-size:large;" *ngIf="cadafase.estafase==0" name="code-working-outline"></ion-icon>
+
+          <span *ngIf="cadafase.estafase==1"  style="cursor:pointer;" (click)="subirfase(cadafase)" class="v2-badge v2-badge-movimientos">
+            <a style="vertical-align: inherit; color:#ffffff;">Subir</a></span>
+          
+
+        </ion-col>
+        <ion-col size="1" style="font-size: small; text-align:center;" class="ion-no-padding" no-padding>
+          {{cadafase.precio_wera_usd}}
+        </ion-col>
+        <ion-col size="2.5" style="font-size: small; text-align:center;" class="ion-no-padding" no-padding>
+          {{cadafase.porcentaje}}
+        </ion-col>
+        <ion-col size="4" style="font-size: 8px; text-align:center;" class="ion-no-padding" no-padding>
+          {{cadafase.asignaciondetokens}}
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  
+</section>
+
+<section *ngIf="segmentModel=='chatdesoporte'">
+
+    <ion-grid>
+    
+        <ion-row>
+          <ion-text>Seleccione un chat</ion-text>
+        </ion-row>
+        
+        <ion-card>
+          <ion-row>
+            &nbsp; 
+          </ion-row>
+        </ion-card>
+      
+    </ion-grid>
+    
+</section>
+
+
+
+</ion-content>

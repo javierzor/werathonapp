@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'visualizadorimagenes',
     loadChildren: () => import('./modals/visualizadorimagenes/visualizadorimagenes.module').then( m => m.VisualizadorimagenesPageModule)
   },
+  {
+    path: 'paneladmin',
+    loadChildren: () => import('./paneladmin/paneladmin.module').then( m => m.PaneladminPageModule)
+  },
 ];
 
 @NgModule({

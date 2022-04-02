@@ -40,14 +40,14 @@
               <ion-input min="0" max="9999999999999999" type="number" (ionFocus)="IONFOCUSmontoenweras()" [(ngModel)]="montoenweras"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-text *ngIf="montoenweras" style="position:absolute; bottom:0px; left:20px; font-size:12px; color: #784d94;">Son {{montoenweras*0.2 | number : '1.2-2' }} $</ion-text>
+          <ion-text *ngIf="montoenweras" style="position:absolute; bottom:0px; left:20px; font-size:12px; color: #784d94;">Son {{montoenweras*precio_wera_usd | number : '1.2-2' }} $</ion-text>
           <ion-col size="6">
             <ion-item>
               <ion-label position="floating">Dolares:</ion-label>
               <ion-input min="0" max="9999999999999999" type="number" (ionFocus)="IONFOCUSmontoendolares()" [(ngModel)]="montoendolares"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-text *ngIf="montoendolares" style="position:absolute; bottom:0px; right:15px; font-size:11px; color: #784d94;">Recibira {{montoendolares/0.2 | number : '1.2-2' }} Weras</ion-text>
+          <ion-text *ngIf="montoendolares" style="position:absolute; bottom:0px; right:15px; font-size:11px; color: #784d94;">Recibira {{montoendolares/precio_wera_usd | number : '1.2-2' }} Weras</ion-text>
         </ion-row>
       </ion-grid>
     </ion-card-content>

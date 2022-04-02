@@ -24,6 +24,7 @@ export class NuevacompraPage implements OnInit {
   imageProfile: any = null;
   new_url_image: any = null;
   montopasadoaweras: any = null;
+  precio_wera_usd: any;
 
   constructor(
     private imageService: ImageService,
@@ -31,10 +32,24 @@ export class NuevacompraPage implements OnInit {
     private modalController: ModalController,
     private variosservicios: VariosService,
 
-  ) { }
+  ) 
+  {
+    this.obtenerprecio_wera_usdsegunfase(); 
+   }
 
   ngOnInit() {
     this.obtenerAdminDirecciones();
+    this.obtenerprecio_wera_usdsegunfase();
+  }
+
+  obtenerprecio_wera_usdsegunfase(){
+    var datawerathonobtenerprecio_wera_usd = {
+      nombre_solicitud: 'werathonobtenerprecio_wera_usd'
+    }
+    this.variosservicios.variasfunciones(datawerathonobtenerprecio_wera_usd).subscribe(async( res: any ) =>{
+      console.log('respuesta de werathonobtenerprecio_wera_usd', res);
+      this.precio_wera_usd=res;
+  });
   }
 
   dismissyactualiza() {
@@ -134,7 +149,7 @@ export class NuevacompraPage implements OnInit {
     }
 
     if(!this.montoenweras){
-      this.montopasadoaweras=this.montoendolares/0.2;
+      this.montopasadoaweras=this.montoendolares/this.precio_wera_usd;
       var dataagregarmovimiento = {
         nombre_solicitud: 'werathoncrearmovimiento',
         id_user: this.informacion_perfil.id,

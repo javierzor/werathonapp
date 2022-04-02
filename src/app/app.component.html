@@ -20,7 +20,7 @@
         </ion-buttons>
       </ion-item>
 
-      <ion-item *ngIf="this.varios.tipo_cuenta==999">
+      <ion-item (click)="toggleMenu()" *ngIf="this.varios.tipo_cuenta==999" routerLink="/paneladmin">
         <ion-icon slot="start" name="log-in-outline"></ion-icon>
         <ion-button (click)="iralpaneladmin()">
           Admin Panel

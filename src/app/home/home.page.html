@@ -1,13 +1,13 @@
 <ion-header color="light" class="ion-no-border" [translucent]="true">
   <ion-toolbar color="light">
     
-    <ion-buttons *ngIf="verificarloginemail!=null&&verificarloginemail!=undefined" slot="end">
+    <ion-buttons *ngIf="informacion_perfil!=null&&informacion_perfil!=undefined" slot="end">
       <ion-button (click)="ONCHANGEmenuderechosuperior()" >
         <ion-avatar style="width:90%; height:90%;">
           <img [src]="informacion_perfil.profile_url_img==undefined || informacion_perfil.profile_url_img==null || informacion_perfil.profile_url_img=='' ? 'assets/avatarassetsimage.png' : informacion_perfil.profile_url_img"/>
         </ion-avatar>
       </ion-button>
-      <ion-button style="text-transform:none" (click)="ONCHANGEmenuderechosuperior()"><ion-text  style="margin-left: -8px;">{{this.verificarloginemail}}</ion-text><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
+      <ion-button style="text-transform:none" (click)="ONCHANGEmenuderechosuperior()"><ion-text  style="margin-left: -8px;">{{this.informacion_perfil.email}}</ion-text><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -38,7 +38,7 @@
     <br>
     <ion-card-title style="margin-left: 20px; color: #404040; font-family: 
      -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;">
-     Plataforma de lanzamiento de ICO abierta</ion-card-title>
+     Plataforma de lanzamiento de ICO abierta {{precio_wera_usd}}</ion-card-title>
     <br>
   </ion-card>
 
@@ -72,7 +72,7 @@
         </ion-col>
         <ion-col>
           Mi saldo WERA:
-            <a>{{misaldo| number : '1.15-15'}}</a>
+            <a>{{misaldo| number : '1.15-15'}}<strong>/</strong></a> <span class="v2-badge v2-badge-primary"><a (click)="retirar(misaldo*precio_wera_usd)" style="vertical-align: inherit; cursor:pointer; color:#784d94;">{{misaldo*precio_wera_usd| number : '1.2-2'}}$&nbsp;<button >Retirar</button></a></span>
           <!-- 0.000000000000000000 -->
         </ion-col>
         <ion-col>

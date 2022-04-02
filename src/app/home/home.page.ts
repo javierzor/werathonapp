@@ -44,6 +44,7 @@ export class HomePage {
   adaporcentajededisminucion: number;
   informacion_perfil: any;
   misaldo: any;
+  precio_wera_usd: any;
 
   constructor(
     private variosservicios: VariosService,
@@ -53,14 +54,18 @@ export class HomePage {
   ) 
   {
     this.funcionverificarlogin();
+    this.ObtenerProfileInfo();
     this.reverificarpreciosde4criptos();
     this.conrealtime();
     this.obtenerMiSaldo();
+    this.obtenerprecio_wera_usdsegunfase();
   }
 
   ionViewWillEnter(){
     this.menu.enable(true);
     this.reverificarpreciosde4criptos();
+    this.ObtenerProfileInfo();
+    this.obtenerMiSaldo();
   }
 
   async ngOnInit() {
@@ -68,6 +73,8 @@ export class HomePage {
     this.reverificarpreciosde4criptos();
     this.ObtenerProfileInfo();
     this.obtenerMiSaldo();
+    this.obtenerprecio_wera_usdsegunfase();
+
  }
 
  //EMPIEZA los menu superior y sus ONCHANGE
@@ -115,6 +122,20 @@ export class HomePage {
     this.router.navigate(['login']);
   }
 //Termina menu superior y sus ONCHANGE
+
+obtenerprecio_wera_usdsegunfase(){
+  var datawerathonobtenerprecio_wera_usd = {
+    nombre_solicitud: 'werathonobtenerprecio_wera_usd'
+  }
+  this.variosservicios.variasfunciones(datawerathonobtenerprecio_wera_usd).subscribe(async( res: any ) =>{
+    console.log('respuesta de werathonobtenerprecio_wera_usd', res);
+    this.precio_wera_usd=res;
+});
+}
+
+retirar(monto){
+  console.log('el usuario desea retirar=',monto)
+}
 
 
 obtenerMiSaldo(){

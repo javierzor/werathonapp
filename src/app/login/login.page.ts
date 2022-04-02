@@ -153,7 +153,7 @@ export class LoginPage implements OnInit {
       console.log('el usuario intenta logear con esta data,',dataoptimaconsultaruser);
             this.variosservicios.variasfunciones(dataoptimaconsultaruser).subscribe(async( res: any ) =>{
               console.log(' respuesta optimaconsultaruser ',res);
-              if(res!='credencialesincorrectas'&&res!=null){
+              if(res!='credencialesincorrectas'&&res!=null&&res.status=='activo'){
                 this.variosservicios.loading2segundos("Verificacíon exitosa...");
                 this.variosservicios.quitarloading();
                 localStorage.setItem('isLoggedIn', 'true');
