@@ -74,6 +74,7 @@ export class PerfilPage {
       description: null,
       paisnombre: null,
       profile_url_img: null,
+      nuevopassword: null,
       uid: null
     });
     this.ObtenerProfileInfo();
@@ -169,7 +170,7 @@ actualziarperfil(){
     console.log(' respuesta werathonupdateuser ',res);
     localStorage.setItem('profileInfo', this.encrypt(JSON.stringify(res)));
     this.ObtenerProfileInfo();
-
+    this.variosservicios.presentToast("Perfil actualizado exitosamente.");
     });
 
 }

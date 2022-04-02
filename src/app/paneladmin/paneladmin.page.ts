@@ -222,6 +222,10 @@ async VerImagen(ImgUrl) {
           this.segmentModel='solicitudesdecompras';
           this.segmentChanged();
          }
+         else {
+          this.variosservicios.presentToast("..::Error, debe reingresar seccion, (recomprobacion admin)::..");
+
+        }
         });
     }
 
@@ -238,6 +242,10 @@ async VerImagen(ImgUrl) {
           this.segmentModel='solicitudesdecompras';
           this.segmentChanged();
          }
+         else {
+          this.variosservicios.presentToast("..::Error, debe reingresar seccion, (recomprobacion admin)::..");
+
+        }
         });
     }
 
@@ -253,6 +261,10 @@ async VerImagen(ImgUrl) {
           this.segmentModel='activardesacusuario';
           this.segmentChanged();
          }
+         else {
+          this.variosservicios.presentToast("..::Error, debe reingresar seccion, (recomprobacion admin)::..");
+
+        }
         });
     }
 
@@ -268,6 +280,10 @@ async VerImagen(ImgUrl) {
           this.segmentModel='activardesacusuario';
           this.segmentChanged();
          }
+         else {
+          this.variosservicios.presentToast("..::Error, debe reingresar seccion, (recomprobacion admin)::..");
+
+        }
         });
     }
 
