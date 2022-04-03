@@ -63,6 +63,10 @@ const routes: Routes = [
     path: 'paneladmin',
     loadChildren: () => import('./paneladmin/paneladmin.module').then( m => m.PaneladminPageModule)
   },
+  {
+    path: 'nuevafase',
+    loadChildren: () => import('./modals/nuevafase/nuevafase.module').then( m => m.NuevafasePageModule)
+  },
 ];
 
 @NgModule({

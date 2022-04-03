@@ -6,6 +6,7 @@ import { VariosService } from '../service/varios.service';
 import { ToastController, LoadingController } from "@ionic/angular";
 import { VisualizadorimagenesPage } from '../modals/visualizadorimagenes/visualizadorimagenes.page';
 import { ModalController } from '@ionic/angular';
+import { NuevafasePage } from '../modals/nuevafase/nuevafase.page';
 
 
 @Component({
@@ -28,6 +29,9 @@ export class PaneladminPage implements OnInit {
   respuestadewerathonobtenertablafase: any;
   precio_wera_usd: any;
   respuestadewerathonadminsubirdefase: any;
+  progress: any;
+
+
   constructor(
     private variosservicios: VariosService,
     private modalController: ModalController,
@@ -38,7 +42,8 @@ export class PaneladminPage implements OnInit {
   )
    {
     this.obtenerprecio_wera_usdsegunfase();
-
+    // this.progress=0;
+    this.obtenerbarrauno();
    }
   ionViewWillEnter(){
     this.menu.enable(true);
@@ -49,6 +54,8 @@ export class PaneladminPage implements OnInit {
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
     this.obtenerprecio_wera_usdsegunfase();
+    this.obtenerbarrauno();
+
   }
   funcionverificarlogin(){
     this.verificarloginemail=localStorage.getItem('email');
@@ -77,6 +84,17 @@ async ObtenerProfileInfo(){
     this.informacion_perfil=JSON.parse(this.informacion_perfil);
     console.log('informacion de perfil en Perfil', this.informacion_perfil);
   }
+
+async obtenerbarrauno(){
+  var dataobtenerbarrauno = {
+    nombre_solicitud: 'obtenerbarrauno'
+  }
+  this.variosservicios.variasfunciones(dataobtenerbarrauno).subscribe(async( res: any ) =>{
+    console.log('respuesta de obtenerbarrauno', res);
+    this.progress=res/100;
+});
+}
+
   ONCHANGEmenuderechosuperior(){
     if(this.menuderechosuperior==false)   {this.menuderechosuperior=true;}
     else{this.menuderechosuperior=false;}
@@ -198,6 +216,7 @@ async VerImagen(ImgUrl) {
             console.log('subida de fase exitosa');
             //el segment estara en Admin Fases y se simulara un Segment Change Para actualizar la lista::..
             this.segmentModel='veraumentarfase';
+            this.obtenerprecio_wera_usdsegunfase();
             this.segmentChanged();
           }
 
@@ -287,6 +306,69 @@ async VerImagen(ImgUrl) {
         });
     }
 
+    increaseProgress(){
+      if(this.progress<0.99){
+        this.progress = this.progress + 0.01;
+        this.actualizarBarraUno();
+        }
+    }
 
+    increaseProgressx10(){
+      if(this.progress<0.90){
+      this.progress = this.progress + 0.10;
+      this.actualizarBarraUno();
+       }
+    }
+
+    reducirProgress(){
+      if(this.progress>0.01){
+        this.progress = this.progress - 0.01;
+        this.actualizarBarraUno();
+      }
+    }
+
+    reducirProgressx10(){
+      if(this.progress>0.10){
+        this.progress = this.progress - 0.10;
+        this.actualizarBarraUno();
+      }
+    }
   
+    actualizarBarraUno(){
+      
+      var dataactualizarbarrauno = {
+        nombre_solicitud: 'actualizarbarrauno',
+        tipo_cuenta:this.varios.tipo_cuenta,
+        valor_barra: this.progress*100
+      }
+       this.variosservicios.variasfunciones(dataactualizarbarrauno).subscribe(async( res: any ) =>{
+         console.log('respuesta de actualizarbarrauno', res);
+         if(res>0){
+          this.variosservicios.presentToast("Proceso de barra actualizado!");
+        }
+         else {
+          this.variosservicios.presentToast("..::Error, debe reingresar seccion, (recomprobacion admin)::..");
+
+        }
+        });
+
+
+    }
+
+    async AdminagregarFase(){
+      const modal = await this.modalController.create({
+        component: NuevafasePage,
+        initialBreakpoint: 0.8,
+        breakpoints: [0, 0.8, 3]
+      });
+      modal.onDidDismiss().then((data) => {
+          console.log('data',data);
+          if(data.data.dismissed==true){
+            this.segmentModel='veraumentarfase';
+            this.segmentChanged();
+          }
+        });
+      return await modal.present();
+    }
+
 }

@@ -15,13 +15,13 @@
 </ion-header>
 
 <!-- Contenido si no se tiene informacion del tipo de cuenta -->
-<!-- <ion-content *ngIf="!this.varios.tipo_cuenta">
+<ion-content *ngIf="!this.varios.tipo_cuenta">
   <ion-item routerLink="/login"><ion-button>Reingresar</ion-button>
   </ion-item>
-</ion-content> -->
+</ion-content>
 
 
-<ion-content color="light" (click)="ONCHANGEclickenelcontent()" [fullscreen]="true">
+<ion-content *ngIf="this.varios.tipo_cuenta=='999'" color="light" (click)="ONCHANGEclickenelcontent()" [fullscreen]="true">
 
   <ion-card *ngIf="menuderechosuperior==true" style="position:sticky; float: right; width: fit-content; top:0%; z-index: 9999;">
     <ion-card-header>
@@ -79,7 +79,6 @@ mode="ios"
 <section style="text-align:center;">
 <ion-text color="primary" *ngIf="segmentModel=='solicitudesdecompras'"><h3>Solicitudes de compras</h3></ion-text>
 <ion-text color="primary" *ngIf="segmentModel=='activardesacusuario'"><h3>Activar desactivar usuarios</h3></ion-text>
-<ion-text color="primary" *ngIf="segmentModel=='veraumentarfase'"><h3>Ver/Aumentar Fase</h3></ion-text>
 <ion-text color="primary" *ngIf="segmentModel=='chatdesoporte'"><h3>Chat de Soporte</h3></ion-text>
 <ion-text color="primary" *ngIf="!segmentModel"><h2>Bienvenido Admin</h2></ion-text>
 </section>
@@ -181,8 +180,30 @@ mode="ios"
 <section *ngIf="segmentModel=='veraumentarfase'">
 
   <ion-grid class="ion-no-padding" no-padding>
-    <ion-text>Actualmente <a style="color: #784d94;">1</a> Wera es <a style="color: #784d94;">{{precio_wera_usd}}</a> Dolares</ion-text>
-        <br><br>
+
+    <section style="text-align: center;">
+      <ion-text style="text-align: center;">Actualmente <a style="color: #784d94;">1</a> Wera es <a style="color: #784d94;">{{precio_wera_usd}}</a> Dolares</ion-text>
+    </section>
+    <br>
+
+    <ion-button size="small" (click)="increaseProgress()">Barra <ion-icon color="success" name="add-circle"></ion-icon></ion-button>
+    <ion-button size="small" (click)="increaseProgressx10()">Barra x(10)<ion-icon color="success" name="add-circle"></ion-icon></ion-button>
+    <ion-row class="ion-no-padding" no-padding>
+      <ion-col size="10.5" class="ion-no-padding" no-padding>
+        <ion-progress-bar value={{progress}}>33</ion-progress-bar>
+      </ion-col>
+      <ion-col size="1.5" class="ion-no-padding" no-padding>
+       <ion-text style="font-size:small;">{{progress*100| number : '1.2-2'}}%</ion-text> 
+      </ion-col>
+    </ion-row>
+
+    <ion-button size="small" (click)="reducirProgress()">Barra <ion-icon color="danger" name="remove-circle"></ion-icon></ion-button>
+    <ion-button size="small" (click)="reducirProgressx10()">Barra x(10)<ion-icon color="danger" name="remove-circle"></ion-icon></ion-button>
+
+        <br>
+        <ion-row>
+          <ion-col><ion-button (click)="AdminagregarFase()"><ion-icon name="add-circle"></ion-icon>&nbsp;Agregar Fase</ion-button></ion-col>
+        </ion-row>
 
       <ion-row  style="text-align:center;">
           <ion-col size="0.5">
