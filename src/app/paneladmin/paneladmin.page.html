@@ -202,7 +202,7 @@ mode="ios"
 
         <br>
         <ion-row>
-          <ion-col><ion-button (click)="AdminagregarFase()"><ion-icon name="add-circle"></ion-icon>&nbsp;Agregar Fase</ion-button></ion-col>
+          <ion-col><ion-button [disabled]="ModalAggFaseAbierto" (click)="AdminagregarFase()"><ion-icon name="add-circle"></ion-icon>&nbsp;Agregar Fase</ion-button></ion-col>
         </ion-row>
 
       <ion-row  style="text-align:center;">

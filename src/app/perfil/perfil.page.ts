@@ -150,6 +150,11 @@ sendPhotos(file){
 }
 
 actualziarperfil(){
+
+  if(this.informacion_perfil.nuevopassword){
+
+  }
+
   if(this.registerUserForm.value.genderId==1){
     this.registerUserForm.value.genderId='Masculino';
   }

@@ -30,7 +30,7 @@ export class PaneladminPage implements OnInit {
   precio_wera_usd: any;
   respuestadewerathonadminsubirdefase: any;
   progress: any;
-
+  ModalAggFaseAbierto: boolean=false;
 
   constructor(
     private variosservicios: VariosService,
@@ -55,6 +55,7 @@ export class PaneladminPage implements OnInit {
     this.ObtenerProfileInfo();
     this.obtenerprecio_wera_usdsegunfase();
     this.obtenerbarrauno();
+    this.ModalAggFaseAbierto=false;
 
   }
   funcionverificarlogin(){
@@ -356,12 +357,16 @@ async VerImagen(ImgUrl) {
     }
 
     async AdminagregarFase(){
+
+      
       const modal = await this.modalController.create({
         component: NuevafasePage,
         initialBreakpoint: 0.8,
         breakpoints: [0, 0.8, 3]
       });
+      this.ModalAggFaseAbierto=true;
       modal.onDidDismiss().then((data) => {
+          this.ModalAggFaseAbierto=false;
           console.log('data',data);
           if(data.data.dismissed==true){
             this.segmentModel='veraumentarfase';

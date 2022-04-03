@@ -1,9 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>nuevafase</ion-title>
+<ion-header *ngIf="this.varios.tipo_cuenta=='999'">
+  <ion-toolbar style="text-align:center">
+    <ion-title>Agregar Nueva Fase</ion-title>
+    <ion-button (click)="dismiss()"><ion-icon color="danger" name="close-outline"></ion-icon>Cerrar</ion-button>
+    <ion-button (click)="agregarfase()"><ion-icon color="success" name="checkmark-done-outline"></ion-icon>Agregar</ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="this.varios.tipo_cuenta=='999'">
+  <ion-list class="ion-no-padding" no-padding>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Limite de fase en $ (sin puntos ni espacios en los MILES) ejemplo si es 123.022,41 coloque: 123022.41 </p></ion-text>
+      <ion-label position="floating">Limite de fase:</ion-label>
+      <ion-input [(ngModel)]="limitefaseusd"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding> 
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Precio Wera a USD, (Coloque Punto !NO COMAS!) si es 2.22 coloque <strong color="success">2.22</strong> y no <strong color="danger" style="text-decoration:line-through;">2,22</strong></p></ion-text>
+      <ion-label position="floating">Precio 1 Wera en USD</ion-label>
+      <ion-input [(ngModel)]="precio_wera_usd"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Porcetaje, Use puntos como separador de decimales, (NO COMAS)</p></ion-text>
+      <ion-label position="floating">Porcentaje</ion-label>
+      <ion-input [(ngModel)]="porcentaje"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Asignacion de tokens, Use puntos como separador de decimales, (NO COMAS)</p></ion-text>
+      <ion-label position="floating">Asignación de Tokens</ion-label>
+      <ion-input [(ngModel)]="asignaciondetokens"></ion-input>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
