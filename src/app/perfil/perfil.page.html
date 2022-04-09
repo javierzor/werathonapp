@@ -56,6 +56,9 @@
 <ion-card>
     <h2 class="title-info1" style="margin-top: 0px;"><ion-icon style="font-size: 20px; margin-right: 10px;" name="id-card-outline"></ion-icon> Información Básica</h2>
     <ion-item lines="none">
+      <ion-label color="primary" style="font-weight: 500;text-transform: capitalize;" [ngClass]="{'danger': formErrors.name}">Usuario: {{informacion_perfil.username}}</ion-label>
+    </ion-item>
+    <ion-item lines="none">
         <ion-label color="primary" style="font-weight: 500;text-transform: capitalize;" [ngClass]="{'danger': formErrors.name}">Nombre:</ion-label>
         <ion-input [(ngModel)]="informacion_perfil.name" formControlName="name" type="text" style="text-transform: capitalize;" placeholder="Ingrese Nombre"></ion-input>
     </ion-item>

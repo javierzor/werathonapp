@@ -110,8 +110,8 @@ async ObtenerProfileInfo(){
 async presentModal() {
   const modal = await this.modalController.create({
     component: NuevacompraPage,
-    initialBreakpoint: 1.2,
-    breakpoints: [1, 1.5, 1]
+    // initialBreakpoint: 1.2,
+    // breakpoints: [1, 1.5, 1]
   });
   modal.onDidDismiss().then((data) => {
       console.log('data',data);

@@ -1,87 +1,86 @@
 
 <ion-content color="light">
+  <ion-grid>
 
   <!-- <ion-button color="danger" click="dismissystep2()"><ion-icon cname="close"></ion-icon></ion-button> -->
   <ion-fab-button  size="small" (click)="dismiss()" color="danger"><ion-icon name="close"></ion-icon></ion-fab-button>
   
-<ion-grid>
 <ion-row>
-<ion-col [size]="metodoindex ? '10' : 12">
+  <ion-col [size]="metodoindex ? '12' : 11">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title *ngIf="infovariable&&!mostrarinformaciondepago">Metodo:</ion-card-title>        
+      </ion-card-header>
+      <ion-card-content>
+        <ion-select (ionChange)="ONCHANGEmetodo($event)" [(ngModel)]="metodoindex" placeholder="Seleccione Tipo">
+          <ion-select-option *ngFor="let admindireccion of admindirecciones; let i=index;" value="{{i}}">{{admindireccion.nombre_direccion}}</ion-select-option>
+        </ion-select>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+
+  <ion-col size="1" *ngIf="!metodoindex" >
+    <img style="position:absolute; bottom:20px; left:2px;" width="64px;" src="/assets/clickgif.gif"><br>
+  </ion-col>
+</ion-row>
+
+
   <ion-card>
-    <ion-card-header>
-      <ion-card-title *ngIf="infovariable&&!mostrarinformaciondepago">Metodo:</ion-card-title>
-      <ion-card-title *ngIf="infovariable&&mostrarinformaciondepago">Metodo:
-         <a style="font-size:small;"  *ngIf="infovariable.nombre_direccion">{{infovariable.nombre_direccion}},</a>
-         <a style="font-size:small;"  *ngIf="infovariable.direccion"> {{infovariable.direccion}},</a> 
-         <a style="font-size:small;"  *ngIf="infovariable.nombre_y_apellido">
-          <strong> A nombre:</strong>{{infovariable.nombre_y_apellido}}</a>
-          <a style="font-size:small;"  *ngIf="infovariable.extra1">, {{infovariable.extra1}}</a> 
-          <a style="font-size:small;"  *ngIf="infovariable.extra2">,{{infovariable.extra2}}</a>
-        <img style="display: inline-block; transform: rotate(90deg);" width="25px;" src="/assets/arrow.gif">
-        </ion-card-title>
-          
+    <ion-card-header color="medium">
+      <ion-card-title>Información de pago</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <ion-select (ionChange)="ONCHANGEmetodo($event)" [(ngModel)]="metodoindex" placeholder="Seleccione Tipo">
-        <ion-select-option *ngFor="let admindireccion of admindirecciones; let i=index;" value="{{i}}">{{admindireccion.nombre_direccion}}</ion-select-option>
-      </ion-select>
+    <ion-card-content *ngIf="!infovariable">
+      <ion-text>Porfavor seleccione un metodo de pago</ion-text>
+    </ion-card-content>
+    <ion-card-content *ngIf="infovariable">
+      <ion-text><strong>Metodo</strong>: {{infovariable.nombre_direccion}}</ion-text><br>
+      <ion-text><strong>Dirección</strong>: {{infovariable.direccion}}</ion-text><br>
+      <ion-text><strong>A nombre:</strong> {{infovariable.nombre_y_apellido}}</ion-text><br  *ngIf="infovariable.extra1">
+      <ion-text *ngIf="infovariable.extra1"><strong>Extra</strong>: {{infovariable.extra1}}</ion-text><br *ngIf="infovariable.extra2">
+      <ion-text *ngIf="infovariable.extra2"><strong>Extra</strong>: {{infovariable.extra2}}</ion-text><br>
+      <ion-text *ngIf="montoenweras"><strong>Monto</strong>: $ {{montoenweras*precio_wera_usd | number : '1.2-2' }}</ion-text><br *ngIf="montoenweras">
+      <ion-text *ngIf="montoendolares"><strong>Monto</strong>: $ {{montoendolares | number : '1.2-2' }} </ion-text>
     </ion-card-content>
   </ion-card>
-</ion-col>
-
-<ion-col size="2" *ngIf="metodoindex" >
-  <ion-fab-button color="danger" *ngIf="mostrarinformaciondepago" (click)="NoMostrarInfo()" size="small">&nbsp;-<ion-icon name="reader-outline"></ion-icon></ion-fab-button>
-  <ion-fab-button *ngIf="!mostrarinformaciondepago" (click)="MostrarInfo()">Info<br><ion-icon name="reader-outline"></ion-icon></ion-fab-button>
-  <img width="64px;" src="/assets/clickgif.gif"><br>
-</ion-col>
-</ion-row>
-</ion-grid>
 
 
-
-  <ion-card>
-    <ion-card-content class="ion-no-no-padding" no-padding>
-      <ion-card-title>Monto:</ion-card-title>
-      <ion-grid class="ion-no-no-padding" no-padding>
-        <ion-row class="ion-no-no-padding" no-padding>
+   &nbsp;&nbsp;&nbsp;<a style="text-align:center">Monto:</a>
+      <ion-row class="ion-no-no-padding" no-padding>
           <ion-col size="6" class="ion-no-no-padding" no-padding>
             <ion-item>
               <ion-label position="floating">Weras:</ion-label>
               <ion-input min="0" max="9999999999999999" type="number" (ionFocus)="IONFOCUSmontoenweras()" [(ngModel)]="montoenweras"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-text *ngIf="montoenweras" style="position:absolute; bottom:0px; left:20px; font-size:12px; color: #784d94;">Son {{montoenweras*precio_wera_usd | number : '1.2-2' }} $</ion-text>
           <ion-col size="6">
             <ion-item>
               <ion-label position="floating">Dolares:</ion-label>
               <ion-input min="0" max="9999999999999999" type="number" (ionFocus)="IONFOCUSmontoendolares()" [(ngModel)]="montoendolares"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-text *ngIf="montoendolares" style="position:absolute; bottom:0px; right:15px; font-size:11px; color: #784d94;">Recibira {{montoendolares/precio_wera_usd | number : '1.2-2' }} Weras</ion-text>
+          <ion-text *ngIf="montoenweras" style="font-size:12px; color: #784d94;">&nbsp;&nbsp;Son {{montoenweras*precio_wera_usd | number : '1.2-2' }} $</ion-text>
+          <ion-text *ngIf="montoendolares" style="font-size:11px; color: #784d94;">&nbsp;&nbsp;Recibira {{montoendolares/precio_wera_usd | number : '1.2-2' }} Weras</ion-text>
         </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+
+
 
   <ion-card>
-
-
     <div class="content-img">
-      <label  style="cursor:pointer;"  for="input">Adjunta Su recibo aqui.
+      <label  style="cursor:pointer;"  for="input">Adjuntar Comprobante.
       <img style="border-radius: 50em; display: block; object-fit: cover;" [src]="!new_url_image ? 'assets/factura.webp' : new_url_image"/>
       <ion-icon name="camera"></ion-icon>
       </label>
       <input (change)=takePicture($event) class="input" type="file" id="input">
   </div>
-
   <ion-icon *ngIf="new_url_image" color="success" style="font-size:xx-large;" name="checkmark-circle"></ion-icon>
-
   </ion-card>
   
-  
-  
   <ion-button style="position:fixed; right:0; bottom:0;" (click)="agregarcompra()">
-    <ion-icon name="checkmark"></ion-icon>Agregar</ion-button>
+    <ion-icon name="checkmark"></ion-icon>Ya realice el pago</ion-button>
   
+
+  
+
+  </ion-grid>
 </ion-content>
 

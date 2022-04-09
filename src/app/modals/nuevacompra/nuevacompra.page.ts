@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { VariosService } from 'src/app/service/varios.service';
 import * as CryptoJS from 'crypto-js';
 import { ImageService } from '../../service/image.service';
@@ -27,6 +27,7 @@ export class NuevacompraPage implements OnInit {
   precio_wera_usd: any;
 
   constructor(
+    public alertController:AlertController,
     private imageService: ImageService,
     private varios: VariosService,
     private modalController: ModalController,
@@ -58,7 +59,7 @@ export class NuevacompraPage implements OnInit {
     this.modalController.dismiss({
       'dismissed': true
     });
-    this.varios.loading2segundos('Agregando, Porfavor espere...');
+    this.varios.loading2segundos('Pago realizado!');
   }
   dismiss() {
     // using the injected ModalController this page
@@ -129,6 +130,18 @@ export class NuevacompraPage implements OnInit {
     return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey.trim()).toString(CryptoJS.enc.Utf8);
   }
 
+  async AgradecerConAlerta(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Compra',
+      subHeader: 'Compra realizada',
+      message: 'Muchas gracias por realizar la compra de los Werathon Token Ico, en un plazo de 24hs hábiles se verá reflejado en su oficina virtual el monto correspondiente enviado. Muchas gracias por confiar en el proyecto Werathon!.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+  }
 
   agregarcompra(){
     this.informacion_perfil=localStorage.getItem('profileInfo');
@@ -165,6 +178,7 @@ export class NuevacompraPage implements OnInit {
 
     this.variosservicios.variasfunciones(dataagregarmovimiento).subscribe(async( res: any ) =>{
       console.log('respuesta de werathoncrearmovimiento', res);
+      this.AgradecerConAlerta();
       this.dismissyactualiza();
       });
 
