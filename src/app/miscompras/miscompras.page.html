@@ -57,7 +57,10 @@
 
         </ion-col>
         <ion-col offset="3">
-          <ion-button (click)="presentModal()" fill="outline"><ion-icon name="add"></ion-icon>Agregar</ion-button>
+          <ion-button *ngIf="movimientospendientes&&movimientospendientes.length<2" (click)="presentModal()" fill="outline"><ion-icon name="add"></ion-icon>Agregar</ion-button>
+          <ion-button disabled *ngIf="movimientospendientes&&movimientospendientes.length>1" fill="outline"><ion-icon name="add"></ion-icon>Agregar</ion-button>
+          <ion-text style="font-size:10px;" *ngIf="movimientospendientes&&movimientospendientes.length>1">Ya tiene 2 Compras pendientes</ion-text>
+
         </ion-col>
       </ion-row>
 

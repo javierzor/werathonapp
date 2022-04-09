@@ -28,6 +28,7 @@ export class MiscomprasPage {
   step:any;
   languages_active: any;
   movimientos: any;
+  movimientospendientes: any;
 
   constructor(
     private modalController: ModalController,
@@ -69,6 +70,16 @@ export class MiscomprasPage {
        console.log('respuesta de werathonobtenermovimientos', res);
        this.movimientos=res;
      });
+
+     var datawerathoncuantosmovimientospendientes = {
+      nombre_solicitud: 'werathoncuantosmovimientospendientes',
+      id_user: this.informacion_perfil.id
+    }
+     this.variosservicios.variasfunciones(datawerathoncuantosmovimientospendientes).subscribe(async( res: any ) =>{
+       console.log('respuesta de werathoncuantosmovimientospendientes', res);
+       this.movimientospendientes=res;
+     });
+
   }
 
   funcionverificarlogin(){
