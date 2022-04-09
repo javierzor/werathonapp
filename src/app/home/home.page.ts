@@ -45,6 +45,8 @@ export class HomePage {
   informacion_perfil: any;
   misaldo: any;
   precio_wera_usd: any;
+  progress_en_porcentaje: any;
+  respuestadewerathonobtenertablafase: any;
 
   constructor(
     private variosservicios: VariosService,
@@ -59,6 +61,7 @@ export class HomePage {
     this.conrealtime();
     this.obtenerMiSaldo();
     this.obtenerprecio_wera_usdsegunfase();
+    this.obtenerbarrauno();
   }
 
   ionViewWillEnter(){
@@ -66,6 +69,7 @@ export class HomePage {
     this.reverificarpreciosde4criptos();
     this.ObtenerProfileInfo();
     this.obtenerMiSaldo();
+    this.obtenerbarrauno();
   }
 
   async ngOnInit() {
@@ -74,7 +78,7 @@ export class HomePage {
     this.ObtenerProfileInfo();
     this.obtenerMiSaldo();
     this.obtenerprecio_wera_usdsegunfase();
-
+    this.obtenerbarrauno();
  }
 
  //EMPIEZA los menu superior y sus ONCHANGE
@@ -102,6 +106,7 @@ export class HomePage {
       this.menuderechosuperior=false;
     }
   }
+
 
   ONCHANGEclickenelcontent(){
     this.menuderechosuperior=false;
@@ -284,6 +289,27 @@ async copiar(texto) {
       await navigator.clipboard.writeText(texto);
     } catch (err) {}
   }
+}
+
+
+async obtenerbarrauno(){
+  var dataobtenerbarrauno = {
+    nombre_solicitud: 'obtenerbarrauno'
+  }
+  this.variosservicios.variasfunciones(dataobtenerbarrauno).subscribe(async( res: any ) =>{
+    console.log('respuesta de obtenerbarrauno', res);
+    this.progress_en_porcentaje=res;
+});
+}
+
+werathonObtenerTablaFaseFuncionReutilizada(){
+  var datawerathonobtenertablafase = {
+    nombre_solicitud: 'werathonobtenertablafase'
+  }
+   this.variosservicios.variasfunciones(datawerathonobtenertablafase).subscribe(async( res: any ) =>{
+     console.log('respuesta de werathonobtenertablafase', res);
+     this.respuestadewerathonobtenertablafase=res;
+   });
 }
 
 
