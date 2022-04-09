@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import {Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { VariosService } from '../service/varios.service';
 
 @Component({
   selector: 'app-guia',
@@ -26,8 +27,10 @@ export class GuiaPage implements OnInit {
       prevEl: '.swiper-button-prev',
     },
   };
+  respuestadewerathonobtenertablafase: any;
   
   constructor(
+    private variosservicios: VariosService,
     private router: Router,
     private menu: MenuController,
 
@@ -41,6 +44,7 @@ export class GuiaPage implements OnInit {
 
 
     async ngOnInit() {
+      this.werathonObtenerTablaFaseFuncionReutilizada();
   }
 
   desactivardedos(){
@@ -51,6 +55,15 @@ export class GuiaPage implements OnInit {
     this.mostrardedos=true;
   }
 
+  werathonObtenerTablaFaseFuncionReutilizada(){
+    var datawerathonobtenertablafase = {
+      nombre_solicitud: 'werathonobtenertablafase'
+    }
+     this.variosservicios.variasfunciones(datawerathonobtenertablafase).subscribe(async( res: any ) =>{
+       console.log('respuesta de werathonobtenertablafase', res);
+       this.respuestadewerathonobtenertablafase=res;
+     });
+  }
   
 
 }

@@ -18,14 +18,22 @@
             </ion-card-content>
         </ion-card>
       </ion-slide>
-      <ion-slide  style=" background-image: url(assets/tuto-2.png);background-repeat:no-repeat;">
-        <ion-card>
-            <ion-card-header>
-                <h1>Reccorrido Tutorial Page Nro. 2</h1><br>
-            </ion-card-header>
-            <ion-card-content>
-
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <ion-slide class="cartaconscrolly300dealto" style=" background-image: url(assets/tuto-2.png);background-repeat:no-repeat;">
+        <ion-card style="height:50%; width: 85%; overflow-y: scroll;">
+            <h1>FASES DE ICO:</h1>
+            <ion-card-content class="ion-text-center">
+                <ion-row>
+                    <ion-col><strong>Fase</strong></ion-col>
+                    <ion-col><strong>Limite</strong></ion-col>
+                    <ion-col><strong>Precio</strong></ion-col>
+                    <ion-col><strong>Tokens</strong></ion-col>
+                </ion-row>
+                <ion-row *ngFor="let cadafase of respuestadewerathonobtenertablafase">
+                    <ion-col style="font-size: small;">{{cadafase.numero}}</ion-col>
+                    <ion-col>{{cadafase.limitefaseusd}}$</ion-col>
+                    <ion-col>{{cadafase.precio_wera_usd}}</ion-col>
+                    <ion-col style="font-size: 9px;">{{cadafase.asignaciondetokens}}</ion-col>
+                </ion-row>
             </ion-card-content>
         </ion-card>
         
@@ -33,7 +41,7 @@
       <ion-slide  style=" background-image: url(assets/tuto-3.png);background-repeat:no-repeat;">
         <ion-card>
             <ion-card-header>
-                <h1>Reccorrido Tutorial Page Nro. 3</h1><br>
+                <h1>Recorrido Tutorial Page Nro. 3</h1><br>
             </ion-card-header>
             <ion-card-content>
                
