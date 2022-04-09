@@ -79,6 +79,24 @@
 
 
       <ion-row style="text-align: center;">
+
+        <ion-col style="border-right: 1px solid #d1d9e5">
+          Fase : 
+          <a *ngFor="let fase of respuestadewerathonobtenertablafase" >
+          <a *ngIf="fase.estafase==1">{{fase.numero}}</a></a>
+          de 100 
+          <ion-label> 
+            <span class="v2-badge v2-badge-primary" *ngIf="progress_en_porcentaje">
+              {{progress_en_porcentaje}}% en fase
+            </span></ion-label>
+          <br>
+          ${{saldo_de_app| number : '1.2-2'}} de $
+          <a *ngFor="let fase of respuestadewerathonobtenertablafase" >
+          <a *ngIf="fase.estafase==1">${{fase.limitefaseusd}}</a></a>
+          &nbsp;<a style="font-size:10px;">para la siguiente fase.</a>
+        </ion-col>
+
+
         <ion-col style="border-right: 1px solid #d1d9e5">
           ID de Usuario:<br>
           {{informacion_perfil.id_publico}}
@@ -197,6 +215,37 @@
              </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-card>
+
+  <ion-card class="ion-no-padding  ion-text-center" no-padding>
+    <ion-row class="ion-no-padding" no-padding>
+      <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
+        <img width="50%" src="assets/retiroshomelogos/1.png">
+        <br>
+        <ion-text>TRX</ion-text>
+      </ion-col>
+      <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
+        <img width="50%" src="assets/retiroshomelogos/2.png">
+        <br>
+        <ion-text>USDT</ion-text>
+      </ion-col>
+      <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
+        <img width="50%" src="/assets/retiroshomelogos/3.png">
+        <br>
+        <ion-text>ADA</ion-text>
+      </ion-col>
+      <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
+        <img width="50%" src="assets/retiroshomelogos/4.png">
+        <br>
+        <ion-text>DOT</ion-text>
+      </ion-col>
+      <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
+        <img width="50%" src="assets/retiroshomelogos/5.png">
+        <br>
+        <ion-text>METAMASK</ion-text>
+      </ion-col>
+    </ion-row>
+
   </ion-card>
 
   

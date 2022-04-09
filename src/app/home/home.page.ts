@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import {Router} from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { VariosService } from '../service/varios.service';
 import { Clipboard } from '@awesome-cordova-plugins/clipboard/ngx';
+import { NuevacompraPage } from '../modals/nuevacompra/nuevacompra.page';
 
 @Component({
   selector: 'app-home',
@@ -47,8 +48,10 @@ export class HomePage {
   precio_wera_usd: any;
   progress_en_porcentaje: any;
   respuestadewerathonobtenertablafase: any;
+  saldo_de_app: any;
 
   constructor(
+    private modalController: ModalController,
     private variosservicios: VariosService,
     private router: Router,
     private menu: MenuController,
@@ -62,6 +65,8 @@ export class HomePage {
     this.obtenerMiSaldo();
     this.obtenerprecio_wera_usdsegunfase();
     this.obtenerbarrauno();
+    this.werathonObtenerTablaFaseFuncionReutilizada();
+    this.obtenerSaldoDeApp();
   }
 
   ionViewWillEnter(){
@@ -70,6 +75,8 @@ export class HomePage {
     this.ObtenerProfileInfo();
     this.obtenerMiSaldo();
     this.obtenerbarrauno();
+    this.werathonObtenerTablaFaseFuncionReutilizada();
+    this.obtenerSaldoDeApp();
   }
 
   async ngOnInit() {
@@ -79,6 +86,8 @@ export class HomePage {
     this.obtenerMiSaldo();
     this.obtenerprecio_wera_usdsegunfase();
     this.obtenerbarrauno();
+    this.werathonObtenerTablaFaseFuncionReutilizada();
+    this.obtenerSaldoDeApp();
  }
 
  //EMPIEZA los menu superior y sus ONCHANGE
@@ -156,6 +165,18 @@ obtenerMiSaldo(){
      this.misaldo=res;
    });
 }
+
+obtenerSaldoDeApp(){
+  var datawerathonsaldodetodalaapp = {
+    nombre_solicitud: 'werathonsaldodetodalaapp',
+  }
+   this.variosservicios.variasfunciones(datawerathonsaldodetodalaapp).subscribe(async( res: any ) =>{
+     console.log('respuesta de werathonsaldodetodalaapp', res);
+     this.saldo_de_app=res;
+   });
+}
+
+
 
 
 reverificarpreciosde4criptos(){
@@ -312,6 +333,23 @@ werathonObtenerTablaFaseFuncionReutilizada(){
    });
 }
 
+async presentModal() {
+  const modal = await this.modalController.create({
+    component: NuevacompraPage,
+    initialBreakpoint: 1.2,
+    breakpoints: [1, 1.5, 1]
+  });
+  modal.onDidDismiss().then((data) => {
+      console.log('data',data);
+      if(data.data.dismissed==true){
+      }
+    });
+
+  return await modal.present();
+}
+
 
 
 }
+
+

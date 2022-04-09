@@ -10,7 +10,16 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title *ngIf="infovariable&&!mostrarinformaciondepago">Metodo:</ion-card-title>
-      <ion-card-title *ngIf="infovariable&&mostrarinformaciondepago">Metodo: <a style="font-size:small;"  *ngIf="infovariable.nombre_direccion">{{infovariable.nombre_direccion}},</a><a style="font-size:small;"  *ngIf="infovariable.direccion"> {{infovariable.direccion}},</a> <a style="font-size:small;"  *ngIf="infovariable.nombre_y_apellido"><strong> A nombre:</strong>{{infovariable.nombre_y_apellido}}</a><a style="font-size:small;"  *ngIf="infovariable.extra1">, {{infovariable.extra1}}</a> <a style="font-size:small;"  *ngIf="infovariable.extra2">,{{infovariable.extra2}}</a></ion-card-title>
+      <ion-card-title *ngIf="infovariable&&mostrarinformaciondepago">Metodo:
+         <a style="font-size:small;"  *ngIf="infovariable.nombre_direccion">{{infovariable.nombre_direccion}},</a>
+         <a style="font-size:small;"  *ngIf="infovariable.direccion"> {{infovariable.direccion}},</a> 
+         <a style="font-size:small;"  *ngIf="infovariable.nombre_y_apellido">
+          <strong> A nombre:</strong>{{infovariable.nombre_y_apellido}}</a>
+          <a style="font-size:small;"  *ngIf="infovariable.extra1">, {{infovariable.extra1}}</a> 
+          <a style="font-size:small;"  *ngIf="infovariable.extra2">,{{infovariable.extra2}}</a>
+        <img style="display: inline-block; transform: rotate(90deg);" width="25px;" src="/assets/arrow.gif">
+        </ion-card-title>
+          
     </ion-card-header>
     <ion-card-content>
       <ion-select (ionChange)="ONCHANGEmetodo($event)" [(ngModel)]="metodoindex" placeholder="Seleccione Tipo">
@@ -22,7 +31,8 @@
 
 <ion-col size="2" *ngIf="metodoindex" >
   <ion-fab-button color="danger" *ngIf="mostrarinformaciondepago" (click)="NoMostrarInfo()" size="small">&nbsp;-<ion-icon name="reader-outline"></ion-icon></ion-fab-button>
-  <ion-fab-button *ngIf="!mostrarinformaciondepago" (click)="MostrarInfo()" size="small">&nbsp;Info<ion-icon name="reader-outline"></ion-icon></ion-fab-button>
+  <ion-fab-button *ngIf="!mostrarinformaciondepago" (click)="MostrarInfo()">Info<br><ion-icon name="reader-outline"></ion-icon></ion-fab-button>
+  <img width="64px;" src="/assets/clickgif.gif"><br>
 </ion-col>
 </ion-row>
 </ion-grid>
