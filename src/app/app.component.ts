@@ -16,6 +16,7 @@ export class AppComponent {
   tipo_cuenta: any;
   estadodelmenu: Promise<boolean>;
   mostrareditarperfil: boolean = false;
+  mostrarmensaje: boolean = false;
 
   public appPages = [
     // { title: 'Home', url: 'home', icon: 'planet' },
@@ -73,14 +74,30 @@ export class AppComponent {
     }
   }
 
+  ONCHANGEsoporte(){
+    if(this.mostrarmensaje==true)
+    this.mostrarmensaje=false
+    else{
+      this.mostrarmensaje=true;
+    }
+  }
+
   toggleMenu(){ // this function will toggle your menu. 
     this.menu.toggle();
+    this.mostrareditarperfil=false;
+    this.mostrarmensaje=false;
+  }
+
+  toggleMenuSoporte(){ // this function will toggle your menu. 
+    this.menu.toggle();
+    this.mostrarmensaje=true;
     this.mostrareditarperfil=false;
   }
 
     toggleMenuDeeditarPerfil(){ // this function will toggle your menu. 
     this.menu.toggle();
     this.mostrareditarperfil=true;
+    this.mostrarmensaje=false;
   }
 
   CloseMenuFlechaBoton(){

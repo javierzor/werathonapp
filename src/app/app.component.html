@@ -67,6 +67,17 @@
           <ion-label >Guia</ion-label>
         </ion-item>
 
+        <ion-item routerDirection="root" (click)="ONCHANGEsoporte()" lines="none" auto-hide="false" detail="false" routerLinkActive="selected">
+          <ion-icon color="primary" name="headset"></ion-icon> &nbsp; &nbsp; 
+          <ion-label *ngIf="!mostrarmensaje">Soporte</ion-label>
+          <ion-label color="primary" *ngIf="mostrarmensaje">Soporte</ion-label>
+        </ion-item>
+            <ion-item *ngIf="mostrarmensaje" routerDirection="root" (click)="toggleMenuSoporte()" routerLink="/soporte" lines="none" detail="false" routerLinkActive="selected">
+              &nbsp; &nbsp; &nbsp; &nbsp;  <ion-icon color="primary" name="mail-unread"></ion-icon> &nbsp; &nbsp; 
+              <ion-label >Mensaje</ion-label>
+            </ion-item>
+
+
         <ion-item routerDirection="root" (click)="logout()" routerLink="/login" lines="none" detail="false" routerLinkActive="selected">
           <ion-icon color="primary" name="chevron-back-outline"></ion-icon> &nbsp; &nbsp; 
           <ion-label >Salir</ion-label>
