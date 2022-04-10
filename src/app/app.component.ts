@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import * as CryptoJS from 'crypto-js';
 import { VariosService } from './service/varios.service';
@@ -36,7 +37,7 @@ export class AppComponent {
 
 
   constructor(
-    
+    private router: Router,
     private menu: MenuController,
     public varios: VariosService
 
@@ -104,6 +105,11 @@ export class AppComponent {
      {
       console.log('Bienvenido: tipo_cuenta',this.tipo_cuenta);
     }
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
   openFirst() {

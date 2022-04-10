@@ -7,6 +7,7 @@ import { ToastController, LoadingController } from "@ionic/angular";
 import { VisualizadorimagenesPage } from '../modals/visualizadorimagenes/visualizadorimagenes.page';
 import { ModalController } from '@ionic/angular';
 import { NuevafasePage } from '../modals/nuevafase/nuevafase.page';
+import { NuevometodoPage } from '../modals/nuevometodo/nuevometodo.page';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class PaneladminPage implements OnInit {
   respuestadewerathonadminsubirdefase: any;
   progress: any;
   ModalAggFaseAbierto: boolean=false;
+  respuestawerathonobteneradmindirecciones: any;
 
   constructor(
     private variosservicios: VariosService,
@@ -161,6 +163,23 @@ if(this.segmentModel=='veraumentarfase'){
      actualizando.dismiss();
    });
 }
+
+if(this.segmentModel=='opciondisponible'){
+  actualizando.dismiss();
+}
+
+if(this.segmentModel=='cambiarmetodos'){
+  var datawerathonobteneradmindirecciones = {
+    nombre_solicitud: 'werathonobteneradmindirecciones'
+  }
+   this.variosservicios.variasfunciones(datawerathonobteneradmindirecciones).subscribe(async( res: any ) =>{
+     console.log('respuesta de werathonobteneradmindirecciones', res);
+     this.respuestawerathonobteneradmindirecciones=res;
+     actualizando.dismiss();
+   });
+  
+}
+
 
 }
 
@@ -374,6 +393,36 @@ async VerImagen(ImgUrl) {
           }
         });
       return await modal.present();
+    }
+
+    async agregarmetodo() {
+      const modal = await this.modalController.create({
+        component: NuevometodoPage,
+        // initialBreakpoint: 1.2,
+        // breakpoints: [1, 1.5, 1]
+      });
+      modal.onDidDismiss().then((data) => {
+          console.log('data',data);
+          if(data.data.dismissed==true){
+            this.segmentModel='cambiarmetodos';
+            this.segmentChanged();
+          }
+        });
+    
+    
+      return await modal.present();
+    }
+
+    borrarmetodo(caametodo){
+      var datawerathonborraradminmetodo = {
+        nombre_solicitud: 'werathonborraradminmetodo',
+        id: caametodo.id
+      }
+       this.variosservicios.variasfunciones(datawerathonborraradminmetodo).subscribe(async( res: any ) =>{
+         console.log('respuesta de werathonborraradminmetodo', res);
+          this.segmentModel='cambiarmetodos';
+          this.segmentChanged();
+    });
     }
 
 }

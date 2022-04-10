@@ -67,6 +67,10 @@ const routes: Routes = [
     path: 'nuevafase',
     loadChildren: () => import('./modals/nuevafase/nuevafase.module').then( m => m.NuevafasePageModule)
   },
+  {
+    path: 'nuevometodo',
+    loadChildren: () => import('./modals/nuevometodo/nuevometodo.module').then( m => m.NuevometodoPageModule)
+  },
 ];
 
 @NgModule({

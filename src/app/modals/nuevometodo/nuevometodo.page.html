@@ -1,0 +1,41 @@
+<ion-header *ngIf="this.varios.tipo_cuenta=='999'">
+  <ion-toolbar style="text-align:center">
+    <ion-title>Agregar Nueva Fase</ion-title>
+    <ion-button (click)="dismiss()"><ion-icon color="danger" name="close-outline"></ion-icon>Cerrar</ion-button>
+    <ion-button [disabled]="
+    !nombre_direccion||
+    !direccion
+    "(click)="agregaradminmetodo()"><ion-icon color="success" name="checkmark-done-outline"></ion-icon>Agregar</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="this.varios.tipo_cuenta=='999'">
+  <ion-list class="ion-no-padding" no-padding>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">El nombre del metodo de recarga o plataforma por donde desea recibir las recargas de Wera de los usuarios </p></ion-text>
+      <ion-label position="floating">Nombre Metodo de recarga:</ion-label>
+      <ion-input [(ngModel)]="nombre_direccion"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding> 
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Direccion o Codigo para recibir la recarga por este metodo.</p></ion-text>
+      <ion-label position="floating">Dirección:</ion-label>
+      <ion-input [(ngModel)]="direccion"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Nombre completo, Ejemplo: Jose Perez</p></ion-text>
+      <ion-label position="floating">Nombre Completo</ion-label>
+      <ion-input [(ngModel)]="nombre_y_apellido"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;">Extra Nro .1 (Si deja vacia esta opcion, en la interfaz de recarga del "Usuario" no se vera esta opcion</p></ion-text>
+      <ion-label position="floating">Extra Nro: 1</ion-label>
+      <ion-input [(ngModel)]="extra1"></ion-input>
+    </ion-item>
+    <ion-item class="ion-no-padding" no-padding>
+      <ion-text color="primary"><p style="font-size:small; margin-bottom: -10px;"></p>Extra Nro .2 |No obligatorio| (Si deja vacia esta opcion, en la interfaz de recarga del "Usuario" no se vera esta opcion</ion-text>
+      <ion-label position="floating">Extra Nro: 2</ion-label>
+      <ion-input [(ngModel)]="extra2"></ion-input>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

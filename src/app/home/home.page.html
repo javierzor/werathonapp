@@ -98,15 +98,17 @@
 
 
         <ion-col style="border-right: 1px solid #d1d9e5">
-          ID de Usuario:<br>
-          {{informacion_perfil.id_publico}}
+          ID de Usuario:
+          <a>
+            <br> <br>
+            {{informacion_perfil.id_publico}}</a>
         </ion-col>
         <ion-col style="border-right: 1px solid #d1d9e5">
-          Estado:<br>
+          Estado:<br> <br>
           <span class="v2-badge v2-badge-success"><a style="vertical-align: inherit; color:#1ea672;">Activado</a></span>
         </ion-col>
         <ion-col style="border-right: 1px solid #d1d9e5">
-          Mi saldo USDT: <br>
+          Mi saldo USDT: <br> <br>
  <span class="v2-badge v2-badge-primary"><a (click)="retirar(misaldo*precio_wera_usd)" style="vertical-align: inherit; cursor:pointer; color:#784d94;">{{misaldo*precio_wera_usd| number : '1.2-2'}}$</a></span>
         </ion-col>
         <ion-col>

@@ -59,7 +59,7 @@ mode="ios"
     </ion-segment-button>
     <ion-segment-button [disabled]="segmentModel=='activardesacusuario'" value="activardesacusuario">
       <ion-button [disabled]="segmentModel=='activardesacusuario'"> 
-      <ion-label>Activar/ <br>Desac. usuario</ion-label>
+      <ion-label>Activ/ <br>Desac User</ion-label>
       </ion-button>
     </ion-segment-button>
 
@@ -68,13 +68,42 @@ mode="ios"
         <ion-label>Ver/Aumentar<br>Fase</ion-label> 
      </ion-button>
     </ion-segment-button>
+
+
+
+</ion-segment>
+
+<span class="brxsmall"></span>
+
+<ion-segment (ionChange)="segmentChanged()"  
+value="ordenesdefraccionamiento"
+scrollable="true"
+mode="ios"
+[(ngModel)]="segmentModel" 
+(ionChange)="segmentChanged()"
+>
+
+
+
+    <ion-segment-button [disabled]="segmentModel=='opciondisponible'" value="opciondisponible">
+      <ion-button [disabled]="segmentModel=='opciondisponible'"> 
+      <ion-label>opcion<br>disponible</ion-label>
+      </ion-button>
+    </ion-segment-button>
+
+    <ion-segment-button [disabled]="segmentModel=='cambiarmetodos'" value="cambiarmetodos">
+     <ion-button [disabled]="segmentModel=='cambiarmetodos'"> 
+        <ion-label>Cambiar<br>Metodos</ion-label> 
+     </ion-button>
+    </ion-segment-button>
     <ion-segment-button [disabled]="segmentModel=='chatdesoporte'" value="chatdesoporte">
       <ion-button [disabled]="segmentModel=='chatdesoporte'"> 
-      <ion-label>Chat de Soporte</ion-label>
+      <ion-label>Chat de<br> Soporte</ion-label>
       </ion-button>
     </ion-segment-button>
 
 </ion-segment>
+
 
 <section style="text-align:center;">
 <ion-text color="primary" *ngIf="segmentModel=='solicitudesdecompras'"><h3>Solicitudes de compras</h3></ion-text>
@@ -275,6 +304,37 @@ mode="ios"
     </ion-grid>
     
 </section>
+
+<section *ngIf="segmentModel=='cambiarmetodos'">
+  <ion-button (click)="agregarmetodo()" color="success"><ion-icon color="light" name="add-circle-outline"></ion-icon>&nbsp;Agregar</ion-button>
+
+  <ion-card *ngFor="let caametodo of respuestawerathonobteneradmindirecciones">
+    <ion-card-header color="medium">
+      <ion-card-title>
+        {{caametodo.nombre_direccion}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-text><strong>dirección:</strong>{{caametodo.direccion}}</ion-text><br>
+            <ion-text><strong>A nombre:</strong>{{caametodo.nombre_y_apellido}}</ion-text> <br>
+            <ion-text><strong>extra 1:</strong>{{caametodo.extra1}}</ion-text> <br>
+          </ion-col>
+          <ion-col>
+            <ion-text><strong>extra 2:</strong>{{caametodo.extra2}}</ion-text> <br>
+            <ion-text><strong>Fecha:</strong>{{caametodo.fecha}}</ion-text> <br>
+            <ion-text><ion-button (click)="borrarmetodo(caametodo)" size="small">Borrar</ion-button></ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</section>
+
+
 
 
 

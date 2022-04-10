@@ -34,8 +34,8 @@
     </ion-card-content>
     <ion-card-content *ngIf="infovariable">
       <ion-text><strong>Metodo</strong>: {{infovariable.nombre_direccion}}</ion-text><br>
-      <ion-text><strong>Dirección</strong>: {{infovariable.direccion}}</ion-text><br>
-      <ion-text><strong>A nombre:</strong> {{infovariable.nombre_y_apellido}}</ion-text><br  *ngIf="infovariable.extra1">
+      <ion-text><strong>Dirección</strong>: {{infovariable.direccion}}</ion-text><br  *ngIf="infovariable.nombre_y_apellido">
+      <ion-text *ngIf="infovariable.nombre_y_apellido"><strong>A nombre:</strong> {{infovariable.nombre_y_apellido}}</ion-text><br  *ngIf="infovariable.extra1">
       <ion-text *ngIf="infovariable.extra1"><strong>Extra</strong>: {{infovariable.extra1}}</ion-text><br *ngIf="infovariable.extra2">
       <ion-text *ngIf="infovariable.extra2"><strong>Extra</strong>: {{infovariable.extra2}}</ion-text><br>
       <ion-text *ngIf="montoenweras"><strong>Monto</strong>: $ {{montoenweras*precio_wera_usd | number : '1.2-2' }}</ion-text><br *ngIf="montoenweras">

@@ -47,9 +47,14 @@ export class MiscomprasPage {
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
     this.step='1';
+    this.obtenermovimientos();
   }
   ionViewWillEnter(){
     this.menu.enable(true);
+    this.funcionverificarlogin();
+    this.ObtenerProfileInfo();
+    this.step='1';
+    this.obtenermovimientos();
   }
   async ngOnInit() {
     this.funcionverificarlogin();
