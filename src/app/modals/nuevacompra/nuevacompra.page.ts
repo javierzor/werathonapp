@@ -143,10 +143,48 @@ export class NuevacompraPage implements OnInit {
 
   }
 
+  async AnunciarQueSureferidorGanaraTambienel25(dataagregarmovimiento){
+    this.variosservicios.presentToast("Su referidor ganara "+dataagregarmovimiento.monto*0.25+" Weras por esta compra");
+  }
+
   agregarcompra(){
     this.informacion_perfil=localStorage.getItem('profileInfo');
     this.informacion_perfil=this.decrypt(this.informacion_perfil);
     this.informacion_perfil=JSON.parse(this.informacion_perfil);
+
+    // if(this.informacion_perfil.referidor&&this.montoenweras){
+    //   var datawerathoncrearmovimientodondereferidorganaporunreferido = {
+    //     nombre_solicitud: 'werathoncrearmovimientodondereferidorganaporunreferido',
+    //     id_referidor: this.informacion_perfil.id,
+    //     id_referido: this.informacion_perfil.id_publico,
+    //     mas_o_menos:'mas',
+    //     monto:this.montoenweras,
+    //     id_tipo_movimiento: '2',
+    //   }
+    //   this.variosservicios.variasfunciones(datawerathoncrearmovimientodondereferidorganaporunreferido).subscribe(async( res: any ) =>{
+    //     console.log('respuesta de werathoncrearmovimientodondereferidorganaporunreferido', res);
+    //     this.AnunciarQueSureferidorGanaraTambienel25(datawerathoncrearmovimientodondereferidorganaporunreferido);
+    //     });  
+    // }
+
+    // if(this.informacion_perfil.referidor&&!this.montoenweras){
+    //   var datawerathoncrearmovimientodondereferidorganaporunreferido = {
+    //     nombre_solicitud: 'werathoncrearmovimientodondereferidorganaporunreferido',
+    //     id_referidor: this.informacion_perfil.referidor,
+    //     id_referido: this.informacion_perfil.id_publico,
+    //     mas_o_menos:'mas',
+    //     monto:this.montopasadoaweras,
+    //     id_tipo_movimiento: '2',
+    //   }
+    //   this.variosservicios.variasfunciones(datawerathoncrearmovimientodondereferidorganaporunreferido).subscribe(async( res: any ) =>{
+    //     console.log('respuesta de werathoncrearmovimientodondereferidorganaporunreferido', res);
+    //     this.AnunciarQueSureferidorGanaraTambienel25(datawerathoncrearmovimientodondereferidorganaporunreferido);
+    //     });
+    // }
+
+    // if(this.informacion_perfil.referidor&&this.montoenweras){
+
+    // }
 
 
     if(this.montoenweras){
@@ -157,7 +195,10 @@ export class NuevacompraPage implements OnInit {
         id_admin_direccion:this.infovariable.id,
         monto:this.montoenweras,
         id_tipo_movimiento: '1',
-        reciboImgUrl: this.new_url_image
+        reciboImgUrl: this.new_url_image,
+        id_referidor: this.informacion_perfil.referidor,
+        id_referido: this.informacion_perfil.id_publico,
+
       }
     }
 
@@ -170,7 +211,9 @@ export class NuevacompraPage implements OnInit {
         id_admin_direccion:this.infovariable.id,
         monto:this.montopasadoaweras,
         id_tipo_movimiento: '1',
-        reciboImgUrl: this.new_url_image
+        reciboImgUrl: this.new_url_image,
+        id_referidor: this.informacion_perfil.referidor,
+        id_referido: this.informacion_perfil.id_publico,
       }
     }
 
@@ -180,6 +223,7 @@ export class NuevacompraPage implements OnInit {
       console.log('respuesta de werathoncrearmovimiento', res);
       this.AgradecerConAlerta();
       this.dismissyactualiza();
+      this.AnunciarQueSureferidorGanaraTambienel25(dataagregarmovimiento);
       });
 
 

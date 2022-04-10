@@ -133,6 +133,7 @@ async presentModal() {
       console.log('data',data);
       if(data.data.dismissed==true){
         this.obtenermovimientos();
+        
       }
     });
 
