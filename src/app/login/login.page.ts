@@ -66,6 +66,11 @@ export class LoginPage implements OnInit {
   comprobarSiFueReferido(){
     this.route.params.subscribe(params => {
     this.parametrosporlink = params; 
+
+    if(this.parametrosporlink.registro){
+      this.step="registro";
+    }
+    
     if(this.parametrosporlink.referido){
       console.log('Llego REFERIDO. Esta info llego por el enlace (Link)=', this.parametrosporlink);   
       this.referidor =  this.parametrosporlink.referido;
@@ -74,6 +79,8 @@ export class LoginPage implements OnInit {
     else{
       console.log('El usuario no llego referido', this.parametrosporlink);       
     }
+
+
 
     });
     }
