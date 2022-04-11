@@ -46,13 +46,13 @@ export class SoportePage implements OnInit {
     this.ObtenerInformacionDePerfil();
     this.VerSiTieneEnListaDeChatsAlgunChat();
     this.varios.activar_real_time_soporte=true;
-    this.ChatRealTime();
   }
 
   ionViewWillEnter(){
 
     this.ObtenerInformacionDePerfil();
     this.VerSiTieneEnListaDeChatsAlgunChat();
+    this.ChatRealTime();
 
   }
 
@@ -129,8 +129,8 @@ export class SoportePage implements OnInit {
       console.log('se cumplio la condicion en ChatRealTime() De Soporte');
       setTimeout(()=>{ 
           this.Traermismensajesdechatabierto();
+          this.ChatRealTime(); //repite
         },18000);
-        this.ChatRealTime(); //repite
     }
   }
 

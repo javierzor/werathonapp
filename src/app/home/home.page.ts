@@ -61,7 +61,6 @@ export class HomePage {
     this.funcionverificarlogin();
     this.ObtenerProfileInfo();
     this.reverificarpreciosde4criptos();
-    this.conrealtime();
     this.obtenerMiSaldo();
     this.obtenerprecio_wera_usdsegunfase();
     this.obtenerbarrauno();
@@ -77,6 +76,7 @@ export class HomePage {
     this.obtenerbarrauno();
     this.werathonObtenerTablaFaseFuncionReutilizada();
     this.obtenerSaldoDeApp();
+    this.conrealtime();
   }
 
   async ngOnInit() {
@@ -191,7 +191,7 @@ reverificarpreciosde4criptos(){
 }   
 
 conrealtime(){
-  if(this.variosservicios.activar_real_time_home=true){
+  if(this.variosservicios.activar_real_time_home==true){
 
     setTimeout(() => 
     {
@@ -199,8 +199,7 @@ conrealtime(){
       this.verificartrx();
       this.verificardot();
       this.verificarada();
-      //de nuevo
-      this.conrealtime();
+      this.conrealtime(); //se repite
     },
     10000);
   }
