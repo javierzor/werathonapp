@@ -88,6 +88,9 @@ export class HomePage {
     this.obtenerbarrauno();
     this.werathonObtenerTablaFaseFuncionReutilizada();
     this.obtenerSaldoDeApp();
+    this.variosservicios.activar_real_time_home=true;
+      console.log('entrando,this varios',this.variosservicios.activar_real_time_home);
+
  }
 
  //EMPIEZA los menu superior y sus ONCHANGE
@@ -188,16 +191,19 @@ reverificarpreciosde4criptos(){
 }   
 
 conrealtime(){
-  setTimeout(() => 
-  {
-    this.verificarbitcoin();
-    this.verificartrx();
-    this.verificardot();
-    this.verificarada();
-    //de nuevo
-    this.conrealtime();
-  },
-  10000);
+  if(this.variosservicios.activar_real_time_home=true){
+
+    setTimeout(() => 
+    {
+      this.verificarbitcoin();
+      this.verificartrx();
+      this.verificardot();
+      this.verificarada();
+      //de nuevo
+      this.conrealtime();
+    },
+    10000);
+  }
 }
 
 verificarbitcoin(){
@@ -348,6 +354,11 @@ async presentModal() {
   return await modal.present();
 }
 
+
+ionViewWillLeave(){
+  this.variosservicios.activar_real_time_home=false;
+  console.log('saliendo,this varios',this.variosservicios.activar_real_time_home);
+}
 
 
 }

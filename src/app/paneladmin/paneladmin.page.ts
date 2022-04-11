@@ -180,6 +180,12 @@ if(this.segmentModel=='cambiarmetodos'){
   
 }
 
+if(this.segmentModel=='chatdesoporte'){
+
+  actualizando.dismiss();
+
+}
+
 
 }
 

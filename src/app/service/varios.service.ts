@@ -9,6 +9,9 @@ export class VariosService {
 
   isLoading = false;
   tipo_cuenta:any;
+  activar_real_time_soporte:boolean=false;
+  activar_real_time_home:boolean=false;
+
   constructor(
     public toastController: ToastController,
     private loadingController: LoadingController,
