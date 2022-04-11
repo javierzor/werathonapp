@@ -294,13 +294,14 @@ mode="ios"
         <ion-row>
           <ion-text>Seleccione un chat</ion-text>
         </ion-row>
-        
-        <ion-card>
-          <ion-row>
-            &nbsp; 
-          </ion-row>
-        </ion-card>
-      
+
+        <ion-list *ngFor="let cadachat of listasdechat" class="ion-no-padding" no-padding>
+          <ion-item (click)="abrirmodaladminchat(cadachat)" color="primary" style="cursor:pointer;" class="ion-no-padding" no-padding>
+            <ion-label class="ion-no-padding" no-padding>{{cadachat.userdetalles.name}} {{cadachat.userdetalles.lastname}} {{cadachat.userdetalles.id_publico}} | {{cadachat.userdetalles.id_publico}}</ion-label >
+            </ion-item>
+            <hr style="margin: 0em; border-width: 2px;"/>
+        </ion-list>
+
     </ion-grid>
     
 </section>

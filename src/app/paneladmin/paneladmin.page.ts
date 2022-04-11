@@ -8,6 +8,7 @@ import { VisualizadorimagenesPage } from '../modals/visualizadorimagenes/visuali
 import { ModalController } from '@ionic/angular';
 import { NuevafasePage } from '../modals/nuevafase/nuevafase.page';
 import { NuevometodoPage } from '../modals/nuevometodo/nuevometodo.page';
+import { AdminverchatPage } from '../modals/adminverchat/adminverchat.page';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class PaneladminPage implements OnInit {
   progress: any;
   ModalAggFaseAbierto: boolean=false;
   respuestawerathonobteneradmindirecciones: any;
+  listasdechat: any;
 
   constructor(
     private variosservicios: VariosService,
@@ -126,8 +128,10 @@ async obtenerbarrauno(){
     const actualizando = await this.loadingController.create({
     message: 'Actualizando...',spinner: 'bubbles',duration: 15000,
     });
-    console.log(this.segmentModel);
-    actualizando.present();
+    
+    if(this.segmentModel!='chatdesoporte'){
+          actualizando.present();
+    }
     
 if(this.segmentModel=='solicitudesdecompras'){
   var datawerathonadminobtenermovimientos = {
@@ -180,15 +184,31 @@ if(this.segmentModel=='cambiarmetodos'){
   
 }
 
-if(this.segmentModel=='chatdesoporte'){
-
+if(this.segmentModel==='chatdesoporte'){
   actualizando.dismiss();
+  this.varios.activar_real_time_admin_listas_de_chat=true;
+  this.FuncionObtenerlistasdechat();
+
+      if(this.varios.activar_real_time_admin_listas_de_chat==true){
+        
+        setTimeout(()=>{ 
+          this.segmentModel='chatdesoporte';
+          this.segmentChanged();
+          },10000);
+      }
+}
 
 }
 
-
+FuncionObtenerlistasdechat(){
+  var dataadminverlistasdechat = {
+    nombre_solicitud: 'adminverlistasdechat'
+  }
+   this.variosservicios.variasfunciones(dataadminverlistasdechat).subscribe(async( res: any ) =>{
+     console.log('respuesta de adminverlistasdechat', res);
+     this.listasdechat=res
+   });
 }
-
 
 
 werathonObtenerTablaFaseFuncionReutilizada(){
@@ -430,5 +450,24 @@ async VerImagen(ImgUrl) {
           this.segmentChanged();
     });
     }
+
+    async abrirmodaladminchat(cadachat){
+      this.varios.activar_real_time_admin_listas_de_chat=false;
+      const modal = await this.modalController.create({
+        component: AdminverchatPage,
+        componentProps: {
+          'dataparaelmodal': cadachat
+        },
+      });
+      modal.onDidDismiss().then((data) => {
+          console.log('data',data);
+          this.varios.activar_real_time_admin_listas_de_chat=true;
+          this.varios.activar_real_time_admin_ver_chat=false;
+          this.segmentModel='chatdesoporte';
+          this.segmentChanged();
+        });
+      return await modal.present();
+
+}
 
 }

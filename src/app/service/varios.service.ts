@@ -11,6 +11,9 @@ export class VariosService {
   tipo_cuenta:any;
   activar_real_time_soporte:boolean=false;
   activar_real_time_home:boolean=false;
+  activar_real_time_admin_listas_de_chat:boolean=false;
+  activar_real_time_admin_ver_chat:boolean=false;
+
 
   constructor(
     public toastController: ToastController,

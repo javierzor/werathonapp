@@ -148,7 +148,7 @@ export class SoportePage implements OnInit {
       if(res){
         this.Traermismensajesdechatabierto();
         this.ScrollToBottom();
-        this.enviomensaje()
+        this.enviomensaje();
       }
     });
 
@@ -168,10 +168,22 @@ export class SoportePage implements OnInit {
       if(res){
         this.Traermismensajesdechatabierto();
         this.ScrollToBottom();
-        this.enviomensaje()
+        this.enviomensaje();
+        this.AgregarChatAbierto();
+        this.mensaje='';
       }
     });
 
+  }
+
+  AgregarChatAbierto(){
+    var datacrearlistadechat = {
+      nombre_solicitud: 'crearlistadechat',
+      id_user:this.informacion_perfil.id
+      }
+      this.variosservicios.variasfunciones(datacrearlistadechat).subscribe(async( res: any ) =>{
+      console.log('respuesta de crearlistadechat', res);
+      });
   }
 
 

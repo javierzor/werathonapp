@@ -75,6 +75,10 @@ const routes: Routes = [
     path: 'soporte',
     loadChildren: () => import('./soporte/soporte.module').then( m => m.SoportePageModule)
   },
+  {
+    path: 'adminverchat',
+    loadChildren: () => import('./modals/adminverchat/adminverchat.module').then( m => m.AdminverchatPageModule)
+  },
 ];
 
 @NgModule({
