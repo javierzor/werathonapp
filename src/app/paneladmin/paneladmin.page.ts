@@ -184,13 +184,12 @@ if(this.segmentModel=='cambiarmetodos'){
   
 }
 
-if(this.segmentModel==='chatdesoporte'){
+if(this.segmentModel=='chatdesoporte'){
   actualizando.dismiss();
   this.varios.activar_real_time_admin_listas_de_chat=true;
-  this.FuncionObtenerlistasdechat();
-
-      if(this.varios.activar_real_time_admin_listas_de_chat==true){
-        
+  if(this.varios.activar_real_time_admin_listas_de_chat==true&&this.varios.activar_real_time_admin_ver_chat==false){
+    
+    this.FuncionObtenerlistasdechat();
         setTimeout(()=>{ 
           this.segmentModel='chatdesoporte';
           this.segmentChanged();
