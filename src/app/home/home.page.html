@@ -36,9 +36,30 @@
 
   <ion-card style="border-radius: 2px;">
     <br>
-    <ion-card-title style="margin-left: 20px; color: #404040; font-family: 
-     -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;">
-     Plataforma de lanzamiento de ICO abierta</ion-card-title>
+    <ion-grid no-padding class="ion-no-padding">
+      <ion-row no-padding class="ion-no-padding">
+        <ion-col size="7" no-padding class="ion-no-padding">
+          <ion-card-title style="margin-left: 20px; color: #404040; font-family: 
+           -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;">
+           Plataforma de lanzamiento de ICO abierta</ion-card-title>
+        </ion-col>
+        <ion-col size="3.1">
+        <ion-col size="0.1">
+        </ion-col>
+          <ion-text style="font-size:small;">Precio actual de WERA</ion-text>
+          <br>
+          <ion-text >
+            <a *ngFor="let fase of respuestadewerathonobtenertablafase">
+            <a *ngIf="fase.estafase==1">$&nbsp;{{fase.precio_wera_usd}} USD </a></a>
+            <a  *ngFor="let fase of respuestadewerathonobtenertablafase; let i=index;">
+            <a *ngIf="fase.estafase==1&&info_de_la_siguiente_fase" class="v2-badge v2-badge-primary">+<a  >{{info_de_la_siguiente_fase.precio_wera_usd-fase.precio_wera_usd| number : '1.2-2'}}</a> Siguiente fase</a>
+            </a>
+          </ion-text>
+        </ion-col>
+        <ion-col size="1.8">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <br>
   </ion-card>
 
@@ -219,36 +240,50 @@
     </ion-grid>
   </ion-card>
 
+  <ion-text>&nbsp;&nbsp;&nbsp;Compre tokens de Werathon Token Ico (WERA)</ion-text>
+
   <ion-card class="ion-no-padding  ion-text-center" no-padding>
     <ion-row class="ion-no-padding" no-padding>
       <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
-        <img width="50%" src="assets/retiroshomelogos/1.png">
+        <img width="40%" src="assets/retiroshomelogos/TRX.webp">
         <br>
         <ion-text>TRX</ion-text>
       </ion-col>
       <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
-        <img width="50%" src="assets/retiroshomelogos/2.png">
+        <img width="40%" src="assets/retiroshomelogos/USDT.webp">
         <br>
         <ion-text>USDT</ion-text>
       </ion-col>
       <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
-        <img width="50%" src="/assets/retiroshomelogos/3.png">
+        <img width="40%" src="/assets/retiroshomelogos/ADA.webp">
         <br>
         <ion-text>ADA</ion-text>
       </ion-col>
       <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
-        <img width="50%" src="assets/retiroshomelogos/4.png">
+        <img width="40%" src="assets/retiroshomelogos/DOT.webp">
         <br>
         <ion-text>DOT</ion-text>
       </ion-col>
       <ion-col (click)="presentModal()"style="cursor:pointer;" class="ion-no-padding" no-padding>
-        <img width="50%" src="assets/retiroshomelogos/5.png">
+        <img width="50%" src="assets/retiroshomelogos/METAMASK.webp">
         <br>
         <ion-text>METAMASK</ion-text>
       </ion-col>
     </ion-row>
-
+    <ion-row style="text-align: justify;">
+      <ion-col>
+        <ion-text style="color:#909090;">
+          Usted compra Werathon Tokens (WERA) enviando sus criptomonedas a una de nuestras direcciones. Puede enviar desde cualquier billetera o retirar a la dirección de retiro al momento que se habilite la opción, desde cualquier intercambio de cifrado.
+          Después de 10 confirmaciones de bloque, su transacción se registrará y se la emitirán Werathon Tokens (WERA) para la tasa actual de ICO. Puede enviar varias transacciones desde diferentes cuentas a nuestras direcciones de depósito. Recuerde utilizar la red que esta establecida en cada opción de depósito.
+        </ion-text>
+        <br>
+      </ion-col>
+    </ion-row>
+    
   </ion-card>
-
+  
+  <ion-text *ngIf="direccionesderetiro&&direccionesderetiro.length<1">Dirección de retiro del token: <a class="v2-badge2 v2-badge-noestablecida">No establecida</a></ion-text>
+  <br>
+  <ion-button *ngIf="direccionesderetiro&&direccionesderetiro.length<1" disabled>Establecer mi dirección de retiro</ion-button>
   
 </ion-content>

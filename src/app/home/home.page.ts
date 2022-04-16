@@ -49,6 +49,13 @@ export class HomePage {
   progress_en_porcentaje: any;
   respuestadewerathonobtenertablafase: any;
   saldo_de_app: any;
+  indice_delafase_actual: number;
+  precio_de_la_siguiente_fase: any;
+  precio_de_la_fase_actual: any;
+  cuanto_aumentara_wera: number;
+  info_de_la_siguiente_fase: any;
+  direccionesderetiro: any;
+  movimientospendientes: any;
 
   constructor(
     private modalController: ModalController,
@@ -76,6 +83,8 @@ export class HomePage {
     this.obtenerbarrauno();
     this.werathonObtenerTablaFaseFuncionReutilizada();
     this.obtenerSaldoDeApp();
+    this.obtenerdirecciones();
+    this.obtenermovimientospendientes();
     this.conrealtime();
   }
 
@@ -169,6 +178,17 @@ obtenerMiSaldo(){
    });
 }
 
+
+obtenermovimientospendientes(){
+       var datawerathoncuantosmovimientospendientes = {
+      nombre_solicitud: 'werathoncuantosmovimientospendientes',
+      id_user: this.informacion_perfil.id
+    }
+     this.variosservicios.variasfunciones(datawerathoncuantosmovimientospendientes).subscribe(async( res: any ) =>{
+       console.log('respuesta de werathoncuantosmovimientospendientes', res);
+       this.movimientospendientes=res;
+     });
+}
 obtenerSaldoDeApp(){
   var datawerathonsaldodetodalaapp = {
     nombre_solicitud: 'werathonsaldodetodalaapp',
@@ -328,6 +348,21 @@ async obtenerbarrauno(){
 });
 }
 
+obtenerdirecciones(){
+  this.informacion_perfil=localStorage.getItem('profileInfo');
+  this.informacion_perfil=this.decrypt(this.informacion_perfil);
+  this.informacion_perfil=JSON.parse(this.informacion_perfil);
+  var datawerathonobtenerdirecciones = {
+    nombre_solicitud: 'werathonobtenerdirecciones',
+    id_user: this.informacion_perfil.id
+  }
+   this.variosservicios.variasfunciones(datawerathonobtenerdirecciones).subscribe(async( res: any ) =>{
+     console.log('respuesta de werathonobtenerdirecciones', res);
+     this.direccionesderetiro=res;
+   });
+}
+
+
 werathonObtenerTablaFaseFuncionReutilizada(){
   var datawerathonobtenertablafase = {
     nombre_solicitud: 'werathonobtenertablafase'
@@ -335,22 +370,40 @@ werathonObtenerTablaFaseFuncionReutilizada(){
    this.variosservicios.variasfunciones(datawerathonobtenertablafase).subscribe(async( res: any ) =>{
      console.log('respuesta de werathonobtenertablafase', res);
      this.respuestadewerathonobtenertablafase=res;
+     for (var i=0; i<this.respuestadewerathonobtenertablafase.length; i++) { 
+
+      if(this.respuestadewerathonobtenertablafase[i].estafase==1)
+      this.indice_delafase_actual=i+1;
+      this.info_de_la_siguiente_fase=res[this.indice_delafase_actual];
+      // this.precio_de_la_siguiente_fase=res[this.indice_delafase_actual+1].precio_wera_usd;
+      // this.cuanto_aumentara_wera=this.precio_de_la_siguiente_fase-this.precio_de_la_fase_actual;
+    }
+      console.log('cuanto_aumentara_wera',this.info_de_la_siguiente_fase);
    });
 }
 
 async presentModal() {
-  const modal = await this.modalController.create({
-    component: NuevacompraPage,
-    // initialBreakpoint: 1.2,
-    // breakpoints: [1, 1.5, 1]
-  });
-  modal.onDidDismiss().then((data) => {
-      console.log('data',data);
-      if(data.data.dismissed==true){
-      }
-    });
 
-  return await modal.present();
+  if(this.movimientospendientes&&this.movimientospendientes.length>1){
+    this.variosservicios.presentToast("Usted ya tiene 2 compras pendientes.");
+  }
+
+  if(this.movimientospendientes&&this.movimientospendientes.length<2){
+    const modal = await this.modalController.create({
+      component: NuevacompraPage,
+      // initialBreakpoint: 1.2,
+      // breakpoints: [1, 1.5, 1]
+    });
+    modal.onDidDismiss().then((data) => {
+        console.log('data',data);
+        if(data.data.dismissed==true){
+          this.obtenermovimientospendientes();
+        }
+      });
+    return await modal.present();
+  }
+
+  
 }
 
 
