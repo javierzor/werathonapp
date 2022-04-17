@@ -191,7 +191,7 @@ if(this.segmentModel=='chatdesoporte'){
     
     this.FuncionObtenerlistasdechat();
         setTimeout(()=>{ 
-          this.segmentModel='chatdesoporte';
+          // this.segmentModel='chatdesoporte';
           this.segmentChanged();
           },10000);
       }

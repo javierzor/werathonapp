@@ -120,12 +120,12 @@ mode="ios"
       <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
         <a style="vertical-align: inherit; color:#ffffff;">Usuario:</a></span>
 
-      {{movimiento.userdetalles.username}}
+          {{movimiento.userdetalles.username}}
       
       <br>
       <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
         <a style="vertical-align: inherit; color:#ffffff;">A mi:</a></span>
-        {{movimiento.admindireccion.nombre_direccion}}
+       <ion-text *ngIf="movimiento.admindirecccion">{{movimiento.admindireccion.nombre_direccion}}</ion-text> 
       <br>
       <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
         <a style="vertical-align: inherit; color:#ffffff;">Weras:</a></span>
@@ -138,12 +138,12 @@ mode="ios"
     <ion-col  size="4.5"   class="ion-no-padding" no-padding>
       <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
         <a style="vertical-align: inherit; color:#ffffff;">Metodo:</a></span> 
-        {{movimiento.admindireccion.nombre_direccion}}
+       <ion-text *ngIf="movimiento.admindirecccion">{{movimiento.admindireccion.nombre_direccion}}</ion-text> 
 
       <br>
       <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
         <a style="vertical-align: inherit; color:#ffffff;">Dirección:</a></span> 
-      {{movimiento.admindireccion.direccion}}
+     <ion-text *ngIf="movimiento.admindirecccion"> {{movimiento.admindireccion.direccion}}</ion-text>
       <br>
       <span style="margin-left: 5px;" class="v2-badge v2-badge-movimientos">
         <a style="vertical-align: inherit; color:#ffffff;">Fecha:</a></span> 
