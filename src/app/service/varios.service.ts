@@ -26,7 +26,7 @@ export class VariosService {
 
   variasfunciones(data: any)
   {
-  var url = 'https://nube.gq/api/variasfunciones';
+  var url = 'https://app.werathon.com/laravel/public/api/variasfunciones';
   return this.http.post(url,data,
   {headers:new HttpHeaders({"Content-Type":'application/json'})});
   }
